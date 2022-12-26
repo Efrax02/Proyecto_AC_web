@@ -67,9 +67,13 @@ namespace CompraComponentes.App_Code
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("@p_fechaPed", SqlDbType.SmallDateTime));
+            cmd.Parameters["@p_fechaPed"].Value = pedidos_Tienda.FechaPedido;
             cmd.Parameters.Add(new SqlParameter("@p_fechaEntrgas", SqlDbType.SmallDateTime));
+            cmd.Parameters["@p_fechaEntrgas"].Value = pedidos_Tienda.FechaEntrega;
             cmd.Parameters.Add(new SqlParameter("@p_codProducto", SqlDbType.Int));
+            cmd.Parameters["@p_codProducto"].Value = lineas.CodProducto;
             cmd.Parameters.Add(new SqlParameter("@p_unidades", SqlDbType.Int));
+            cmd.Parameters["@p_unidades"].Value = lineas.Unidades;
             try
             {
                 con.Open();
