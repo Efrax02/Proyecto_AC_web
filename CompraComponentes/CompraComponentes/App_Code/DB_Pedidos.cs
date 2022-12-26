@@ -59,5 +59,36 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
+        public List<Proveedores> ObtenerNombresProveedores()
+        {
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.obtener_nombres_proveedores", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            List<Proveedores> lista = new List<Proveedores>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+
+                    Proveedores proveedores = new Proveedores(
+                        (int)lector.GetInt32(0),
+                        (string)lector.GetString(1)
+                        );
+                    lista.Add(proveedores);
+                }
+                lector.Close();
+                return lista;
+            }
+            catch(SqlException err)
+            {
+                throw new ApplicationException("Error en los datos" + err.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

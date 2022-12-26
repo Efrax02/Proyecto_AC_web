@@ -21,7 +21,12 @@ namespace CompraComponentes.App_Code
             direccion = Direccion;
             email = Email;
         }
-
+        public Proveedores(int CodProveedor,
+        string NombreProveedor)
+        {
+            codProveedor = CodProveedor;
+            nombreProveedor = NombreProveedor;
+        }
         private int codProveedor;
         public int CodProveedor
         {
