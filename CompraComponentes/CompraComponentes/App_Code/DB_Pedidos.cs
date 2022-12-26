@@ -88,5 +88,75 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
+        public List<Pedidos_Tienda> MostrarPedidos(string fecha)
+        {
+            SqlDateTime.Parse(fecha);
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.mostrar_pedidos_por_fecha", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@p_fechaPedido", SqlDbType.SmallDateTime));
+            cmd.Parameters["@p_fechaPedido"].Value = fecha;
+            List<Pedidos_Tienda> lista = new List<Pedidos_Tienda>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Pedidos_Tienda prod = new Pedidos_Tienda(
+                        (int)lector.GetInt32(0),
+                        (SqlDateTime)lector.GetSqlDateTime(1),
+                        (SqlDateTime)lector.GetSqlDateTime(2)
+                        );
+                    lista.Add(prod);
+                }
+                lector.Close();
+                return lista;
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException("Error en los datos" + err.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public List<Lineas_Pedidos_Tienda> MostrarPedidos(int CodPedido)
+        {
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
+            cmd.Parameters["@p_codPedido"].Value = CodPedido;
+            List<Lineas_Pedidos_Tienda> lista = new List<Lineas_Pedidos_Tienda>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Lineas_Pedidos_Tienda prod = new Lineas_Pedidos_Tienda(
+                        (int)lector.GetInt32(0),
+                        (int)lector.GetInt32(1),
+                        (int)lector.GetInt32(2),
+                        (int)lector.GetInt32(3)
+                        );
+                    lista.Add(prod);
+                }
+                lector.Close();
+                return lista;
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException("Error en los datos" + err.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

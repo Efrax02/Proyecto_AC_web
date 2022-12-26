@@ -21,28 +21,20 @@ Begin
 	VALUES (@v_ultimocodPed,@v_ultimoLineaPed,@p_codProducto,@p_unidades)
 End
 
-CREATE PROCEDURE [WEB].[mostrar_nombres_proveedores]
-AS
-SELECT CodProveedor, NombreProv
-FROM SGE_Proveedores
-
-CREATE PROCEDURE [WEB].[mostrar_productos_nombre]
-AS
-SELECT CodProducto, NombreProd
-FROM SGE_Productos_Proveedores
-
 CREATE PROCEDURE [WEB].[mostrar_pedidos_fecha]
-@p_codPedido int
 AS
 SELECT CodPedido,FechaPedido
 FROM SGE_Pedidos_Tienda
 
 CREATE PROCEDURE [WEB].[mostrar_pedidos_por_fecha]
+@p_fechaPedido as smalldatetime
 AS
-SELECT PT.CodPedido, FechaPedido, FechaEntrega
+SELECT CodPedido, FechaPedido, FechaEntrega
 FROM SGE_Pedidos_Tienda
-WHERE CodPedido = @p_codPedido
-CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_por_fecha]
+WHERE CodPedido = @p_fechaPedido
+
+CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_por_codigo]
+@p_codPedido as int
 AS
 SELECT CodPedido, NumLinea, CodProducto, Unidades
 FROM SGE_Pedidos_Tienda
