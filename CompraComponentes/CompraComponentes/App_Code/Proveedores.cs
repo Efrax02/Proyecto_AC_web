@@ -23,7 +23,7 @@ namespace CompraComponentes.App_Code
         }
 
         private int codProveedor;
-        public string CodProveedor
+        public int CodProveedor
         {
             get{ return codProveedor;}
             set{ codProveedor = value; }
