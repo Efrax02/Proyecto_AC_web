@@ -59,29 +59,23 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public List<Proveedores> ObtenerNombresProveedores()
+        public void InsertarPedido(Pedidos_Tienda pedidos_Tienda,
+            Lineas_Pedidos_Tienda lineas)
         {
             SqlConnection con = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand("WEB.obtener_nombres_proveedores", con);
+            SqlCommand cmd = new SqlCommand("WEB.realizar_pedido", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            List<Proveedores> lista = new List<Proveedores>();
+
+            cmd.Parameters.Add(new SqlParameter("@p_fechaPed", SqlDbType.SmallDateTime));
+            cmd.Parameters.Add(new SqlParameter("@p_fechaEntrgas", SqlDbType.SmallDateTime));
+            cmd.Parameters.Add(new SqlParameter("@p_codProducto", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@p_unidades", SqlDbType.Int));
             try
             {
                 con.Open();
-                SqlDataReader lector = cmd.ExecuteReader();
-                while (lector.Read())
-                {
-
-                    Proveedores proveedores = new Proveedores(
-                        (int)lector.GetInt32(0),
-                        (string)lector.GetString(1)
-                        );
-                    lista.Add(proveedores);
-                }
-                lector.Close();
-                return lista;
+                cmd.ExecuteNonQuery();
             }
-            catch(SqlException err)
+            catch (SqlException err)
             {
                 throw new ApplicationException("Error en los datos" + err.Message);
             }

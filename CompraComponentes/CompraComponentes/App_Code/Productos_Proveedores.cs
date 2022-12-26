@@ -26,6 +26,14 @@ namespace CompraComponentes.App_Code
             stockMin = StockMin;
         }
 
+        public Productos_Proveedores(
+            int CodProducto, 
+            string NombreProd)
+        {
+            codProducto = CodProducto;
+            nombreProd = NombreProd;
+        }
+
         private int codProducto;
         public int CodProducto 
         { 

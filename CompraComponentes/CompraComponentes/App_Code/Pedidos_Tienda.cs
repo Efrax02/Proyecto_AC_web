@@ -28,8 +28,8 @@ namespace CompraComponentes.App_Code
             get { return fechaPedido;}
             set { fechaPedido = value;}
         }
-        private SqlDateTime fechaEntrega;
-        public SqlDateTime FechaEntrega
+        private SqlDateTime? fechaEntrega;
+        public SqlDateTime? FechaEntrega
         {
             get { return fechaEntrega; }
             set { fechaEntrega = value; }
