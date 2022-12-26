@@ -39,3 +39,7 @@ AS
 SELECT CodPedido, NumLinea, CodProducto, Unidades
 FROM SGE_Pedidos_Tienda
 WHERE CodPedido = @p_codPedido
+--TODO Crear metodo EliminarPedido
+
+
+--TODO Crear metodo ActualizarPedido

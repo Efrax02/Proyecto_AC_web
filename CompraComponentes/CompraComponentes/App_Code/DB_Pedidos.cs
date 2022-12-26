@@ -158,5 +158,13 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
+        public void EliminarPedido(int CodPedido)
+        {
+            //TODO Implementar Metodo Eliminar Pedido
+        }
+        public void ActualizarLineaPedido(int CodPedido, int NumLinea, int CodProducto, int unidades)
+        {
+            //TODO Implementar Metodo Actualizar Pedido
+        }
     }
 }
