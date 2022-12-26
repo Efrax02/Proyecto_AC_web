@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\Proveedores.cs" />
+    <Content Include="App_Code\Pedidos_Tienda.cs" />
+    <Content Include="App_Code\Factura_Compra.cs" />
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
