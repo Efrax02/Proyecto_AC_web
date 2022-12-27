@@ -37,9 +37,23 @@ CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_por_codigo]
 @p_codPedido as int
 AS
 SELECT CodPedido, NumLinea, CodProducto, Unidades
-FROM SGE_Pedidos_Tienda
+FROM SGE_Lineas_Pedidos_Tienda
 WHERE CodPedido = @p_codPedido
---TODO Crear metodo EliminarPedido
+
+CREATE PROCEDURE [WEB].[eliminar_pedido]
+@p_codPedido as int
+AS 
+DELETE FROM SGE_Pedidos_Tienda WHERE CodPedido = @p_codPedido
+
+DELETE FROM SGE_Lineas_Pedidos_Tienda WHERE CodPedido = @p_codPedido
 
 
---TODO Crear metodo ActualizarPedido
+CREATE PROCEDURE [WEB].[actualizar_pedido]
+@p_CodPedido as int,
+@p_CodProducto as int,
+@p_Cantidad as int
+AS
+UPDATE SGE_Lineas_Pedidos_Tienda
+SET CodProducto = @p_CodProducto,
+	Cantidad = @p_Cantidad
+WHERE CodPedido = @p_CodPedido

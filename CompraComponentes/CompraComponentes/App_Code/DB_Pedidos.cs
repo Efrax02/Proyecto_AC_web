@@ -52,7 +52,7 @@ namespace CompraComponentes.App_Code
             }
             catch(SqlException err)
             {
-                throw new ApplicationException("Error en los datos" + err.Message);
+                throw new ApplicationException($"Error en los datos {err.Message}");
             }
             finally
             {
@@ -81,7 +81,7 @@ namespace CompraComponentes.App_Code
             }
             catch (SqlException err)
             {
-                throw new ApplicationException("Error en los datos" + err.Message);
+                throw new ApplicationException($"Error en los datos {err.Message}");
             }
             finally
             {
@@ -116,7 +116,7 @@ namespace CompraComponentes.App_Code
             }
             catch (SqlException err)
             {
-                throw new ApplicationException("Error en los datos" + err.Message);
+                throw new ApplicationException($"Error en los datos {err.Message}");
             }
             finally
             {
@@ -151,7 +151,7 @@ namespace CompraComponentes.App_Code
             }
             catch (SqlException err)
             {
-                throw new ApplicationException("Error en los datos" + err.Message);
+                throw new ApplicationException($"Error en los datos {err.Message}");
             }
             finally
             {
@@ -160,7 +160,31 @@ namespace CompraComponentes.App_Code
         }
         public void EliminarPedido(int CodPedido)
         {
-            //TODO Implementar Metodo Eliminar Pedido
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmdLeer = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo",con);
+            SqlCommand cmdDelete = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo",con);
+            cmdLeer.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
+            cmdLeer.Parameters["@p_codPedido"].Value = CodPedido;
+            cmdDelete.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
+            cmdDelete.Parameters["@p_codPedido"].Value = CodPedido;
+            try
+            {
+                con.Open();
+                cmdLeer.ExecuteNonQuery();
+                SqlDataReader lector = cmdLeer.ExecuteReader();
+                while(lector.Read())
+                {
+                    cmdDelete.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException($"Error en los datos {err.Message}");
+            }
+            finally
+            {
+                con.Close();
+            }
         }
         public void ActualizarLineaPedido(int CodPedido, int NumLinea, int CodProducto, int unidades)
         {

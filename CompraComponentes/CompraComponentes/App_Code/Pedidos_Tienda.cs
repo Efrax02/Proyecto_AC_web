@@ -8,7 +8,6 @@ namespace CompraComponentes.App_Code
 {
     public class Pedidos_Tienda
     {
-
         public Pedidos_Tienda(int CodPedido, SqlDateTime FechaPedido,SqlDateTime FechaEntrega)
         {
             codPedido=CodPedido;
