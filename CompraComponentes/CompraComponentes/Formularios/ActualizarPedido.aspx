@@ -23,7 +23,11 @@
                     <asp:Parameter Name="unidades" Type="Int32"></asp:Parameter>
                 </UpdateParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+            <asp:GridView ID="GridView1" runat="server" DataSourceID="ActualizarPedido">
+                <Columns>
+                    <asp:CommandField ShowEditButton="True"></asp:CommandField>
+                </Columns>
+            </asp:GridView>
         </div>
     </form>
 </body>
