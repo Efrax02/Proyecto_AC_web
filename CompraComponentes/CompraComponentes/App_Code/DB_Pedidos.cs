@@ -59,6 +59,66 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
+        public List<Proveedores> MostrarNombresProveedor()
+        {
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.mostrar_nombres_proveedor", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            List<Proveedores> lista = new List<Proveedores>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Proveedores prov = new Proveedores(
+                        (int)lector.GetInt32(0),
+                        (string)lector.GetString(1)
+                        );
+                    lista.Add(prov);
+                }
+                lector.Close();
+                return lista;
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException($"Error en los datos {err.Message}");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public List<Productos_Proveedores> MostrarNombresProductos()
+        {
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.mostrar_nombres_producto", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            List<Productos_Proveedores> lista = new List<Productos_Proveedores>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Productos_Proveedores prod = new Productos_Proveedores(
+                        (int)lector.GetInt32(0),
+                        (string)lector.GetString(1)
+                        );
+                    lista.Add(prod);
+                }
+                lector.Close();
+                return lista;
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException($"Error en los datos {err.Message}");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
         public void InsertarPedido(Pedidos_Tienda pedidos_Tienda,
             Lineas_Pedidos_Tienda lineas)
         {
@@ -88,7 +148,38 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public List<Pedidos_Tienda> MostrarPedidos(string fecha)
+        public List<Lineas_Pedidos_Tienda> MostrarPedidosInsertar()
+        {
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.mostrar_lineas_pedidos_insertar", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            List<Lineas_Pedidos_Tienda> lista = new List<Lineas_Pedidos_Tienda>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Lineas_Pedidos_Tienda prod = new Lineas_Pedidos_Tienda(
+                        (int)lector.GetInt32(0),
+                        (int)lector.GetInt32(1),
+                        (int)lector.GetInt32(2)
+                        );
+                    lista.Add(prod);
+                }
+                lector.Close();
+                return lista;
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException($"Error en los datos {err.Message}");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public List<Pedidos_Tienda> MostrarPedidosFecha(string fecha)
         {
             SqlDateTime.Parse(fecha);
             SqlConnection con = new SqlConnection(ConnectionString);
@@ -123,7 +214,7 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public List<Lineas_Pedidos_Tienda> MostrarPedidos(int CodPedido)
+        public List<Lineas_Pedidos_Tienda> MostrarPedidosCodPedido(int CodPedido)
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo", con);
@@ -142,7 +233,8 @@ namespace CompraComponentes.App_Code
                         (int)lector.GetInt32(0),
                         (int)lector.GetInt32(1),
                         (int)lector.GetInt32(2),
-                        (int)lector.GetInt32(3)
+                        (int)lector.GetInt32(3),
+                        (int)lector.GetInt32(4)
                         );
                     lista.Add(prod);
                 }
@@ -210,7 +302,8 @@ namespace CompraComponentes.App_Code
                         (int)lector.GetInt32(0),
                         (int)lector.GetInt32(1),
                         (int)lector.GetInt32(2),
-                        (int)lector.GetInt32(3)
+                        (int)lector.GetInt32(3),
+                        (int)lector.GetInt32(4)
                         );
                     lista.Add(prod);
                 }

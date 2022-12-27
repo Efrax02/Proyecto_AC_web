@@ -26,6 +26,16 @@ AS
 SELECT CodPedido,FechaPedido
 FROM SGE_Pedidos_Tienda
 
+CREATE PROCEDURE [WEB].[mostrar_nombres_proveedor]
+AS
+SELECT CodProveedor, NombreProv
+FROM SGE_Proveedores
+
+CREATE PROCEDURE [WEB].[mostrar_nombres_producto]
+AS
+SELECT CodProducto,NombreProd
+FROM SGE_Productos_Proveedores
+
 CREATE PROCEDURE [WEB].[mostrar_pedidos_por_fecha]
 @p_fechaPedido as smalldatetime
 AS
@@ -36,9 +46,14 @@ WHERE CodPedido = @p_fechaPedido
 CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_por_codigo]
 @p_codPedido as int
 AS
-SELECT CodPedido, NumLinea, CodProducto, Unidades
+SELECT CodPedido, NumLinea, CodProveedor, CodProducto, Unidades
 FROM SGE_Lineas_Pedidos_Tienda
 WHERE CodPedido = @p_codPedido
+
+CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_insertar]
+AS
+SELECT CodProveedor, CodProducto, Unidades
+FROM SGE_Lineas_Pedidos_Tienda
 
 CREATE PROCEDURE [WEB].[eliminar_pedido]
 @p_codPedido as int

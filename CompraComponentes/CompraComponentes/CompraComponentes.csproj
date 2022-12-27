@@ -67,19 +67,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Formularios\ActualizarPedido.aspx" />
+    <Content Include="Formularios\EliminarPedido.aspx" />
+    <Content Include="Formularios\NuevoPedido.aspx" />
     <Content Include="SQL\ProcedimientosAlamacenados.sql" />
     <Content Include="Web.config" />
-    <Content Include="WebForm1.aspx" />
+    <Content Include="Formularios\WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\Proveedores.cs" />
     <Content Include="App_Code\Pedidos_Tienda.cs" />
     <Content Include="App_Code\Factura_Compra.cs" />
-    <Compile Include="WebForm1.aspx.cs">
+    <Compile Include="Formularios\ActualizarPedido.aspx.cs">
+      <DependentUpon>ActualizarPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\ActualizarPedido.aspx.designer.cs">
+      <DependentUpon>ActualizarPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\EliminarPedido.aspx.cs">
+      <DependentUpon>EliminarPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\EliminarPedido.aspx.designer.cs">
+      <DependentUpon>EliminarPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\NuevoPedido.aspx.cs">
+      <DependentUpon>NuevoPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\NuevoPedido.aspx.designer.cs">
+      <DependentUpon>NuevoPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
+    <Compile Include="Formularios\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\DB_Pedidos.cs" />
