@@ -7,6 +7,7 @@ using System.Data;
 using System.Web.Configuration;
 using System.Web.UI.WebControls;
 using System.Data.SqlTypes;
+using System.Activities.Validation;
 
 namespace CompraComponentes.App_Code
 {
@@ -120,17 +121,14 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public void InsertarPedido(Pedidos_Tienda pedidos_Tienda,
-            Lineas_Pedidos_Tienda lineas)
+        public void InsertarPedido(int CodProducto, int Unidades)
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("WEB.realizar_pedido", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("@p_fechaPed", SqlDbType.SmallDateTime));
-            cmd.Parameters["@p_fechaPed"].Value = pedidos_Tienda.FechaPedido;
-            cmd.Parameters.Add(new SqlParameter("@p_fechaEntrgas", SqlDbType.SmallDateTime));
-            cmd.Parameters["@p_fechaEntrgas"].Value = pedidos_Tienda.FechaEntrega;
+            Lineas_Pedidos_Tienda lineas = new Lineas_Pedidos_Tienda(CodProducto, Unidades);
+
             cmd.Parameters.Add(new SqlParameter("@p_codProducto", SqlDbType.Int));
             cmd.Parameters["@p_codProducto"].Value = lineas.CodProducto;
             cmd.Parameters.Add(new SqlParameter("@p_unidades", SqlDbType.Int));
@@ -163,8 +161,7 @@ namespace CompraComponentes.App_Code
                 {
                     Lineas_Pedidos_Tienda prod = new Lineas_Pedidos_Tienda(
                         (int)lector.GetInt32(0),
-                        (int)lector.GetInt32(1),
-                        (int)lector.GetInt32(2)
+                        (int)lector.GetInt32(1)
                         );
                     lista.Add(prod);
                 }
@@ -234,8 +231,7 @@ namespace CompraComponentes.App_Code
                         (int)lector.GetInt32(0),
                         (int)lector.GetInt32(1),
                         (int)lector.GetInt32(2),
-                        (int)lector.GetInt32(3),
-                        (int)lector.GetInt32(4)
+                        (int)lector.GetInt32(3)
                         );
                     lista.Add(prod);
                 }
@@ -303,8 +299,7 @@ namespace CompraComponentes.App_Code
                         (int)lector.GetInt32(0),
                         (int)lector.GetInt32(1),
                         (int)lector.GetInt32(2),
-                        (int)lector.GetInt32(3),
-                        (int)lector.GetInt32(4)
+                        (int)lector.GetInt32(3)
                         );
                     lista.Add(prod);
                 }

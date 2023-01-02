@@ -37,17 +37,17 @@ namespace CompraComponentes.App_Code
 
     public class Lineas_Pedidos_Tienda
     {
-        public Lineas_Pedidos_Tienda(int CodPedido,int NumLinea, int CodProveedor, int CodProducto, int Unidades)
+        public Lineas_Pedidos_Tienda(int CodPedido,int NumLinea, /*int CodProveedor,*/ int CodProducto, int Unidades)
         {
             codPedido = CodPedido;
             numLinea = NumLinea;
-            codProveedor = CodProveedor;
+            //codProveedor = CodProveedor;
             codProducto = CodProducto;
             unidades = Unidades;
         }
-        public Lineas_Pedidos_Tienda(int CodProveedor, int CodProducto, int Unidades)
+        public Lineas_Pedidos_Tienda(/*int CodProveedor,*/ int CodProducto, int Unidades)
         {
-            codProveedor = CodProveedor;
+            //codProveedor = CodProveedor;
             codProducto = CodProducto;
             unidades = Unidades;
         }
@@ -65,12 +65,12 @@ namespace CompraComponentes.App_Code
             set { numLinea = value; }
         }
 
-        private int codProveedor;
-        public int CodProveedor
-        {
-            get { return codProveedor; }
-            set { codProveedor = value; }
-        }
+        //private int codProveedor;
+        //public int CodProveedor
+        //{
+        //    get { return codProveedor; }
+        //    set { codProveedor = value; }
+        //}
         private int codProducto;
         public int CodProducto
         {

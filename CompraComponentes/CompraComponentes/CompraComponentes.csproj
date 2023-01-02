@@ -70,6 +70,7 @@
     <Content Include="Formularios\ActualizarPedido.aspx" />
     <Content Include="Formularios\EliminarPedido.aspx" />
     <Content Include="Formularios\NuevoPedido.aspx" />
+    <Content Include="SQL\Procedimiento de Proyecto.sql" />
     <Content Include="SQL\ProcedimientosAlamacenados.sql" />
     <Content Include="Web.config" />
     <Content Include="Formularios\WebForm1.aspx" />

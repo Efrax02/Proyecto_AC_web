@@ -3,22 +3,44 @@ AS
 SELECT CodProducto, CodProveedor, NombreProd,PrecioCoste,Existencias,StokcMax,StokcMin
 FROM SGE_Productos_Proveedores
 
-CREATE PROCEDURE [WEB].[realizar_pedido]
-@p_fechaPed as smalldatetime,
-@p_fechaEntrgas as smalldatetime,
+
+ALTER PROCEDURE [WEB].[realizar_pedido]
+--@p_fechaPed as smalldatetime,
+--@p_fechaEntrgas as smalldatetime,
+@p_tlineas t_SGELineasPedido readonly,
 @p_codProducto as int,
 @p_unidades as int
 AS
 declare @v_ultimocodPed int
 declare @v_ultimoLineaPed int
+declare cursor_lineas cursor
+For Select CodProducto,Unidades
+	From @p_tlineas
+declare @v_CodProducto int
+declare @v_Unidades int
 Begin
-	set @v_ultimocodPed = (SELECT ISNULL(MAX(CodPedido) + 1 , 1) FROM SGE_Pedidos_Tienda)
-	INSERT INTO SGE_Pedidos_Tienda (CodPedido, FechaPed,FechaEntrega)
-	VALUES (@v_ultimocodPed,@p_fechaPed,@p_fechaEntrgas)
+	Begin Transaction
+		Begin Try
+			set @v_ultimocodPed = (SELECT ISNULL(MAX(CodPedido) + 1 , 1) FROM SGE_Pedidos_Tienda)
+			INSERT INTO SGE_Pedidos_Tienda (CodPedido, FechaPed/*,FechaEntrega*/)
+			VALUES (@v_ultimocodPed,GETDATE()/*,@p_fechaEntrgas*/)
 
-	set @v_ultimocodPed = (SELECT ISNULL(MAX(NumLinea) + 1 , 1) FROM SGE_Lineas_Pedidos_Tienda)
-	INSERT INTO SGE_Lineas_Pedidos_Tienda(CodPedido,NumLinea,CodProducto,Unidades)
-	VALUES (@v_ultimocodPed,@v_ultimoLineaPed,@p_codProducto,@p_unidades)
+			Open cursor_lineas
+				fetch cursor_lineas into @v_ultimoLineaPed, @v_CodProducto, @v_Unidades
+				while @@FETCH_STATUS = 0
+				Begin
+					set @v_ultimoLineaPed = (SELECT ISNULL(MAX(NumLinea) + 1 , 1) FROM SGE_LíneasDePedidos_Tienda)
+					INSERT INTO SGE_LíneasDePedidos_Tienda(CodPedido,NumLinea,CodProducto,Unidades)
+					VALUES (@v_ultimocodPed,@v_ultimoLineaPed,@p_codProducto,@p_unidades)
+
+					fetch cursor_lineas into @v_ultimoLineaPed, @v_CodProducto, @v_Unidades
+				End
+			close cursor_lineas
+		commit transaction
+	End try
+	Begin Catch
+		rollback transaction
+	End Catch
 End
 
 CREATE PROCEDURE [WEB].[mostrar_pedidos_fecha]
@@ -50,10 +72,10 @@ SELECT CodPedido, NumLinea, CodProveedor, CodProducto, Unidades
 FROM SGE_Lineas_Pedidos_Tienda
 WHERE CodPedido = @p_codPedido
 
-CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_insertar]
+ALTER PROCEDURE [WEB].[mostrar_lineas_pedidos_insertar]
 AS
-SELECT CodProveedor, CodProducto, Unidades
-FROM SGE_Lineas_Pedidos_Tienda
+SELECT CodPedido, NumLinea, CodProducto, Unidades
+FROM SGE_LíneasDePedidos_Tienda
 
 CREATE PROCEDURE [WEB].[eliminar_pedido]
 @p_codPedido as int
