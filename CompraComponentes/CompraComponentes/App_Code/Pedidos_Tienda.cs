@@ -37,33 +37,33 @@ namespace CompraComponentes.App_Code
 
     public class Lineas_Pedidos_Tienda
     {
-        public Lineas_Pedidos_Tienda(int CodPedido,int NumLinea, /*int CodProveedor,*/ int CodProducto, int Unidades)
-        {
-            codPedido = CodPedido;
-            numLinea = NumLinea;
-            //codProveedor = CodProveedor;
-            codProducto = CodProducto;
-            unidades = Unidades;
-        }
-        public Lineas_Pedidos_Tienda(/*int CodProveedor,*/ int CodProducto, int Unidades)
-        {
-            //codProveedor = CodProveedor;
-            codProducto = CodProducto;
-            unidades = Unidades;
-        }
-        private int codPedido;
-        public int CodPedido
-        {
-            get { return codPedido; }
-            set { codPedido = value; }
-        }
+        //public Lineas_Pedidos_Tienda(int CodPedido,int NumLinea, /*int CodProveedor,*/ int CodProducto, int Unidades)
+        //{
+        //    codPedido = CodPedido;
+        //    numLinea = NumLinea;
+        //    //codProveedor = CodProveedor;
+        //    codProducto = CodProducto;
+        //    unidades = Unidades;
+        //}
+        //public Lineas_Pedidos_Tienda(int CodPedido, int CodProducto, int Unidades)
+        //{
+        //    codPedido = CodPedido;
+        //    codProducto = CodProducto;
+        //    unidades = Unidades;
+        //}
+        //private int codPedido;
+        //public int CodPedido
+        //{
+        //    get { return codPedido; }
+        //    set { codPedido = value; }
+        //}
 
-        private int numLinea;
-        public int NumLinea
-        {
-            get { return numLinea; }
-            set { numLinea = value; }
-        }
+        //private int numLinea;
+        //public int NumLinea
+        //{
+        //    get { return numLinea; }
+        //    set { numLinea = value; }
+        //}
 
         //private int codProveedor;
         //public int CodProveedor
@@ -71,15 +71,63 @@ namespace CompraComponentes.App_Code
         //    get { return codProveedor; }
         //    set { codProveedor = value; }
         //}
-        private int codProducto;
-        public int CodProducto
+        //private int codProducto;
+        //public int CodProducto
+        //{
+        //    get { return codProducto; }
+        //    set { codProducto = value; }
+        //}
+
+        //private int unidades;
+        //public int Unidades{
+        //    get { return unidades; }
+        //    set { unidades = value; }
+        //}
+
+        public Lineas_Pedidos_Tienda(string CodPedido, string NumLinea, /*int CodProveedor,*/ string CodProducto, string Unidades)
+        {
+            codPedido = CodPedido;
+            numLinea = NumLinea;
+            //codProveedor = CodProveedor;
+            codProducto = CodProducto;
+            unidades = Unidades;
+        }
+        public Lineas_Pedidos_Tienda(string CodPedido, string CodProducto, string Unidades)
+        {
+            codPedido = CodPedido;
+            codProducto = CodProducto;
+            unidades = Unidades;
+        }
+        private string codPedido;
+        public string CodPedido
+        {
+            get { return codPedido; }
+            set { codPedido = value; }
+        }
+
+        private string numLinea;
+        public string NumLinea
+        {
+            get { return numLinea; }
+            set { numLinea = value; }
+        }
+
+        private string codProveedor;
+        public string CodProveedor
+        {
+            get { return codProveedor; }
+            set { codProveedor = value; }
+        }
+        private string codProducto;
+        public string CodProducto
         {
             get { return codProducto; }
             set { codProducto = value; }
         }
 
-        private int unidades;
-        public int Unidades{
+        private string unidades;
+        public string Unidades
+        {
             get { return unidades; }
             set { unidades = value; }
         }

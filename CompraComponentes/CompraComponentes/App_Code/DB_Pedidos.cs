@@ -121,17 +121,20 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public void InsertarPedido(int CodProducto, int Unidades)
+        //TODO INSERTAR PEDIDOS  Cambiar los tippos de las variables en el procedimiento almacenado
+        public void InsertarPedido(string CodPedido, string CodProducto, string Unidades)
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("WEB.realizar_pedido", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            Lineas_Pedidos_Tienda lineas = new Lineas_Pedidos_Tienda(CodProducto, Unidades);
+            Lineas_Pedidos_Tienda lineas = new Lineas_Pedidos_Tienda(CodPedido,CodProducto, Unidades);
 
-            cmd.Parameters.Add(new SqlParameter("@p_codProducto", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@p_CodPedido", SqlDbType.NChar, 10));
+            cmd.Parameters["@p_CodPedido"].Value = lineas.CodPedido;
+            cmd.Parameters.Add(new SqlParameter("@p_codProducto", SqlDbType.NChar, 10));
             cmd.Parameters["@p_codProducto"].Value = lineas.CodProducto;
-            cmd.Parameters.Add(new SqlParameter("@p_unidades", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@p_unidades", SqlDbType.NChar, 10));
             cmd.Parameters["@p_unidades"].Value = lineas.Unidades;
             try
             {
@@ -147,6 +150,7 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
+        //TODO MOTRAR PEDIDOS INSERTAR Cambiar los tipos de las variables en el procedimiendo alamacenado
         public List<Lineas_Pedidos_Tienda> MostrarPedidosInsertar()
         {
             SqlConnection con = new SqlConnection(ConnectionString);
@@ -160,8 +164,9 @@ namespace CompraComponentes.App_Code
                 while (lector.Read())
                 {
                     Lineas_Pedidos_Tienda prod = new Lineas_Pedidos_Tienda(
-                        (int)lector.GetInt32(0),
-                        (int)lector.GetInt32(1)
+                        (string)lector.GetString(0),
+                        (string)lector.GetString(1),
+                        (string)lector.GetString(2)
                         );
                     lista.Add(prod);
                 }
@@ -212,13 +217,13 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public List<Lineas_Pedidos_Tienda> MostrarPedidosCodPedido(int CodPedido)
+        public List<Lineas_Pedidos_Tienda> MostrarPedidosCodPedido(string CodPedido)
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.NChar, 10));
             cmd.Parameters["@p_codPedido"].Value = CodPedido;
             List<Lineas_Pedidos_Tienda> lista = new List<Lineas_Pedidos_Tienda>();
             try
@@ -228,10 +233,10 @@ namespace CompraComponentes.App_Code
                 while (lector.Read())
                 {
                     Lineas_Pedidos_Tienda prod = new Lineas_Pedidos_Tienda(
-                        (int)lector.GetInt32(0),
-                        (int)lector.GetInt32(1),
-                        (int)lector.GetInt32(2),
-                        (int)lector.GetInt32(3)
+                        (string)lector.GetString(0),
+                        (string)lector.GetString(1),
+                        (string)lector.GetString(2),
+                        (string)lector.GetString(3)
                         );
                     lista.Add(prod);
                 }
@@ -275,18 +280,20 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public void ActualizarLineaPedido(int CodPedido, int CodProducto, int unidades)
+        public void ActualizarLineaPedido(string CodPedido, string NumLinea, string CodProducto, string unidades)
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmdLeer = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo", con);
-            cmdLeer.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
+            cmdLeer.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.NChar,10));
             cmdLeer.Parameters["@p_codPedido"].Value = CodPedido;
             SqlCommand cmdActualizar = new SqlCommand("WEB.actualizar_pedido", con);
-            cmdActualizar.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
+            cmdActualizar.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.NChar, 10));
             cmdActualizar.Parameters["@p_codPedido"].Value = CodPedido;
-            cmdActualizar.Parameters.Add(new SqlParameter("@p_CodProducto",SqlDbType.Int));
+            cmdActualizar.Parameters.Add(new SqlParameter("@p_NumLinea", SqlDbType.NChar, 10));
+            cmdActualizar.Parameters["@p_NumLinea"].Value = NumLinea;
+            cmdActualizar.Parameters.Add(new SqlParameter("@p_CodProducto", SqlDbType.NChar, 10));
             cmdActualizar.Parameters["@p_CodProducto"].Value = CodProducto;
-            cmdActualizar.Parameters.Add(new SqlParameter("@p_Cantidad", SqlDbType.Int));
+            cmdActualizar.Parameters.Add(new SqlParameter("@p_Cantidad", SqlDbType.NChar, 10));
             cmdActualizar.Parameters["@p_Cantidad"].Value = unidades;
             try
             {
@@ -296,10 +303,10 @@ namespace CompraComponentes.App_Code
                 while (lector.Read())
                 {
                     Lineas_Pedidos_Tienda prod = new Lineas_Pedidos_Tienda(
-                        (int)lector.GetInt32(0),
-                        (int)lector.GetInt32(1),
-                        (int)lector.GetInt32(2),
-                        (int)lector.GetInt32(3)
+                         (string)lector.GetString(0),
+                         (string)lector.GetString(1),
+                         (string)lector.GetString(2),
+                         (string)lector.GetString(3)
                         );
                     lista.Add(prod);
                 }

@@ -22,8 +22,12 @@
                     <asp:Parameter Name="lineas" Type="Object"></asp:Parameter>
                 </InsertParameters>
             </asp:ObjectDataSource>--%>
-            <asp:ObjectDataSource ID="or_insertar_pedido" runat="server" InsertMethod="InsertarPedido" SelectMethod="MostrarPedidosInsertar" TypeName="CompraComponentes.App_Code.DB_Pedidos">
+            <asp:ObjectDataSource ID="or_insertar_pedido" runat="server" 
+                InsertMethod="InsertarPedido"
+                SelectMethod="MostrarPedidosInsertar" 
+                TypeName="CompraComponentes.App_Code.DB_Pedidos">
                 <InsertParameters>
+                    <asp:Parameter Name="CodPedido" Type="Int32"></asp:Parameter>
                     <asp:Parameter Name="CodProducto" Type="Int32"></asp:Parameter>
                     <asp:Parameter Name="Unidades" Type="Int32"></asp:Parameter>
                 </InsertParameters>
@@ -31,6 +35,7 @@
             <asp:DetailsView ID="DetailsView1" runat="server" Height="50px" Width="125px" AutoGenerateRows="False" DataSourceID="or_insertar_pedido" DefaultMode="Insert"
                 AutoGenerateInsertButton="true">
                 <Fields>
+                    <asp:BoundField DataField="CodPedido" HeaderText="CodPedido" SortExpression="CodPedido"></asp:BoundField>
                     <asp:BoundField DataField="CodProducto" HeaderText="CodProducto" SortExpression="CodProducto"></asp:BoundField>
                     <asp:BoundField DataField="Unidades" HeaderText="Unidades" SortExpression="Unidades"></asp:BoundField>
                 </Fields>
