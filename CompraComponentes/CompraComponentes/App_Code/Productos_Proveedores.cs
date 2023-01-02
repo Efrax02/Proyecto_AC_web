@@ -14,16 +14,16 @@ namespace CompraComponentes.App_Code
             string NombreProd, 
             SqlMoney PrecioCoste, 
             int Existencias, 
-            int StockMax, 
-            int StockMin)
+            int StokcMax, 
+            int StokcMin)
         {
             codProducto = CodProducto;
             codProveedor = CodProveedor;
             nombreProd = NombreProd;
             precioCoste = PrecioCoste;
             existencias = Existencias;
-            stockMax = StockMax;
-            stockMin = StockMin;
+            stokcMax = StokcMax;
+            stokcMin = StokcMin;
         }
 
         public Productos_Proveedores(
@@ -64,17 +64,17 @@ namespace CompraComponentes.App_Code
             get { return existencias; }
             set { existencias = value; }
         }
-        private int stockMax;
-        public int StockMax 
+        private int stokcMax;
+        public int StokcMax 
         {
-            get { return stockMax; }
-            set { existencias = value; }
+            get { return stokcMax; }
+            set { stokcMax = value; }
         }
-        private int stockMin;
-        public int StockMin 
+        private int stokcMin;
+        public int StokcMin
         {
-            get { return stockMin; }
-            set { stockMin = value; }
+            get { return stokcMin; }
+            set { stokcMin = value; }
         }
     }
 }

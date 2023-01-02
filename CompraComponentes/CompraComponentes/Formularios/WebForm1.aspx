@@ -20,8 +20,8 @@
                     <asp:BoundField DataField="NombreProd" HeaderText="NombreProd" SortExpression="NombreProd"></asp:BoundField>
                     <asp:BoundField DataField="PrecioCoste" HeaderText="PrecioCoste" SortExpression="PrecioCoste"></asp:BoundField>
                     <asp:BoundField DataField="Existencias" HeaderText="Existencias" SortExpression="Existencias"></asp:BoundField>
-                    <asp:BoundField DataField="StockMax" HeaderText="StockMax" SortExpression="StockMax"></asp:BoundField>
-                    <asp:BoundField DataField="StockMin" HeaderText="StockMin" SortExpression="StockMin"></asp:BoundField>
+                    <asp:BoundField DataField="StokcMax" HeaderText="StokcMax" SortExpression="StokcMax"></asp:BoundField>
+                    <asp:BoundField DataField="StokcMin" HeaderText="StokcMin" SortExpression="StokcMin"></asp:BoundField>
                 </Columns>
             </asp:GridView>
             <%--<asp:SqlDataSource runat="server" ID="SqlDataSource" ConnectionString='<%$ ConnectionStrings:DAM2-EfrainHernandezEFRAX %>' SelectCommand="SELECT [CodProducto], [CodProveedor], [NombreProd], [PrecioCoste], [Existencias], [StokcMax], [StokcMin] FROM [SGE_Productos_Proveedores]"></asp:SqlDataSource>--%>

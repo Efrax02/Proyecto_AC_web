@@ -13,7 +13,7 @@
             <asp:Label ID="CodPedido" runat="server" Text="Código de Pedido"></asp:Label><br />
             <asp:TextBox ID="txtCodPedido" runat="server"></asp:TextBox>
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
-            <asp:ObjectDataSource ID="ActualizarPedido" runat="server" SelectMethod="MostrarPedidosCodPedido" TypeName="CompraComponentes.App_Code.DB_Pedidos" UpdateMethod="ActualizarLineaPedido">
+            <asp:ObjectDataSource ID="ActualizarPedidos" runat="server" SelectMethod="MostrarPedidosCodPedido" TypeName="CompraComponentes.App_Code.DB_Pedidos" UpdateMethod="ActualizarLineaPedido">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="txtCodPedido" PropertyName="Text" Name="CodPedido" Type="Int32"></asp:ControlParameter>
                 </SelectParameters>

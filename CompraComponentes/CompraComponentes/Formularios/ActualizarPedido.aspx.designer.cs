@@ -51,13 +51,13 @@ namespace CompraComponentes.Formularios
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control ActualizarPedido.
+        /// Control ActualizarPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ActualizarPedido;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ActualizarPedidos;
 
         /// <summary>
         /// Control GridView1.

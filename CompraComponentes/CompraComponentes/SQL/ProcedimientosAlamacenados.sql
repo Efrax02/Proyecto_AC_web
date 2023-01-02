@@ -1,6 +1,6 @@
-CREATE PROCEDURE [WEB].[mostrar_productos]
+ALTER PROCEDURE [WEB].[mostrar_productos]
 AS
-SELECT CodProducto, CodProveedor, NombreProd,PrecioCoste,Existencias,StockMax,StockMin
+SELECT CodProducto, CodProveedor, NombreProd,PrecioCoste,Existencias,StokcMax,StokcMin
 FROM SGE_Productos_Proveedores
 
 CREATE PROCEDURE [WEB].[realizar_pedido]
@@ -23,7 +23,7 @@ End
 
 CREATE PROCEDURE [WEB].[mostrar_pedidos_fecha]
 AS
-SELECT CodPedido,FechaPedido
+SELECT CodPedido,FechaPed
 FROM SGE_Pedidos_Tienda
 
 CREATE PROCEDURE [WEB].[mostrar_nombres_proveedor]
@@ -39,9 +39,9 @@ FROM SGE_Productos_Proveedores
 CREATE PROCEDURE [WEB].[mostrar_pedidos_por_fecha]
 @p_fechaPedido as smalldatetime
 AS
-SELECT CodPedido, FechaPedido, FechaEntrega
+SELECT CodPedido, FechaPed, FechaEntrega
 FROM SGE_Pedidos_Tienda
-WHERE CodPedido = @p_fechaPedido
+WHERE FechaPed = @p_fechaPedido
 
 CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_por_codigo]
 @p_codPedido as int
