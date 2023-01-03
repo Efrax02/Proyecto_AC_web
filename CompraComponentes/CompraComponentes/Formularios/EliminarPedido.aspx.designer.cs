@@ -24,6 +24,24 @@ namespace CompraComponentes.Formularios
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control or_MostrarCodPedido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource or_MostrarCodPedido;
+
+        /// <summary>
+        /// Control lstCodPedidos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList lstCodPedidos;
+
+        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>
@@ -33,48 +51,30 @@ namespace CompraComponentes.Formularios
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control CodPedido.
+        /// Control txtCodPedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CodPedido;
+        protected global::System.Web.UI.WebControls.TextBox txtCodPedido;
 
         /// <summary>
-        /// Control btnBuscar.
+        /// Control or_EliminarPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.ObjectDataSource or_EliminarPedidos;
 
         /// <summary>
-        /// Control btnEliminar.
+        /// Control grdDatosLineasPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminar;
-
-        /// <summary>
-        /// Control MostararDatosPedidos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource MostararDatosPedidos;
-
-        /// <summary>
-        /// Control LineasPedido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView LineasPedido;
+        protected global::System.Web.UI.WebControls.GridView grdDatosLineasPedidos;
     }
 }

@@ -10,10 +10,26 @@
 <body>
     <form id="form1" runat="server">
         <div>            
-            <asp:ObjectDataSource ID="or_MostrarCodPedido" runat="server" SelectMethod="MostrarPedidos" TypeName="CompraComponentes.App_Code.DB_Pedidos"></asp:ObjectDataSource>
+            
+            <asp:SqlDataSource ID="or_MostrarCodPedido" runat="server" 
+                ConnectionString='<%$ ConnectionStrings:DAM2-EfrainhernandezSPYRO %>' 
+                SelectCommand="SELECT CodPedido FROM SGE_LineasDePedidos_Tienda GROUP BY CodPedido">
+            </asp:SqlDataSource>
+
             <asp:Label ID="Label1" runat="server" Text="Códigos de pedido"></asp:Label>
-            <asp:DropDownList ID="lstCodPedidos" runat="server" AutoPostBack="True" DataSourceID="or_MostrarCodPedido" DataTextField="CodPedido" DataValueField="CodPedido"></asp:DropDownList>
-            <asp:ObjectDataSource ID="or_ActualizarPedidos" runat="server" SelectMethod="MostrarPedidosCodPedido" TypeName="CompraComponentes.App_Code.DB_Pedidos" UpdateMethod="ActualizarLineaPedido">
+            
+            <asp:DropDownList ID="lstCodPedidos" 
+                runat="server" 
+                DataSourceID="or_MostrarCodPedido" 
+                DataTextField="CodPedido" 
+                DataValueField="CodPedido" 
+                AutoPostBack="True">
+            </asp:DropDownList>
+            <asp:ObjectDataSource ID="or_ActualizarPedidos" 
+                runat="server" 
+                SelectMethod="MostrarPedidosCodPedido" 
+                TypeName="CompraComponentes.App_Code.DB_Pedidos" 
+                UpdateMethod="ActualizarLineaPedido">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="lstCodPedidos" PropertyName="SelectedValue" Name="CodPedido" Type="Int32"></asp:ControlParameter>
                 </SelectParameters>
@@ -24,13 +40,9 @@
                     <asp:Parameter Name="unidades" Type="Int32"></asp:Parameter>
                 </UpdateParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="GridView1" runat="server" DataSourceID="or_ActualizarPedidos" AutoGenerateColumns="False">
+            <asp:GridView ID="grdDatosLineasPedidos" runat="server" DataSourceID="or_ActualizarPedidos">
                 <Columns>
                     <asp:CommandField ShowEditButton="True"></asp:CommandField>
-                    <asp:BoundField DataField="CodPedido" HeaderText="CodPedido" SortExpression="CodPedido"></asp:BoundField>
-                    <asp:BoundField DataField="CodProveedor" HeaderText="CodProveedor" SortExpression="CodProveedor"></asp:BoundField>
-                    <asp:BoundField DataField="CodProducto" HeaderText="CodProducto" SortExpression="CodProducto"></asp:BoundField>
-                    <asp:BoundField DataField="Unidades" HeaderText="Unidades" SortExpression="Unidades"></asp:BoundField>
                 </Columns>
             </asp:GridView>
         </div>

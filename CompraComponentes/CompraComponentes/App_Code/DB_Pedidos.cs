@@ -24,36 +24,6 @@ namespace CompraComponentes.App_Code
             ConnectionString = connectionString;
         }
 
-        //public List<Lineas_Pedidos_Tienda> MostrarPedidos()
-        //{
-        //    SqlConnection con = new SqlConnection(ConnectionString);
-        //    SqlCommand cmd = new SqlCommand("WEB.mostrar_lineas_pedidos_Codigo", con);
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    List<Lineas_Pedidos_Tienda> lista = new List<Lineas_Pedidos_Tienda>();
-        //    try
-        //    {
-        //        con.Open();
-        //        SqlDataReader lector = cmd.ExecuteReader();
-        //        while (lector.Read())
-        //        {
-        //            Lineas_Pedidos_Tienda ped = new Lineas_Pedidos_Tienda(
-        //                (int)lector.GetInt32(0)
-        //                );
-        //            lista.Add(ped);
-        //        }
-        //        lector.Close();
-        //        return lista;
-        //    }
-        //    catch (SqlException err)
-        //    {
-        //        throw new ApplicationException($"Error en los datos {err.Message}");
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //}
-
         public List<Productos_Proveedores> MostrarProductos()
         {
             SqlConnection con = new SqlConnection(ConnectionString);
@@ -266,7 +236,8 @@ namespace CompraComponentes.App_Code
                         (int)lector.GetInt32(0),
                         (int)lector.GetInt32(1),
                         (int)lector.GetInt32(2),
-                        (int)lector.GetInt32(3)
+                        (int)lector.GetInt32(3),
+                        (int)lector.GetInt32(4)
                         );
                     lista.Add(prod);
                 }
@@ -287,6 +258,8 @@ namespace CompraComponentes.App_Code
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmdLeer = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo", con);
             SqlCommand cmdDelete = new SqlCommand("WEB.eliminar_pedido", con);
+            cmdLeer.CommandType = CommandType.StoredProcedure;
+            cmdDelete.CommandType = CommandType.StoredProcedure;
             cmdLeer.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
             cmdLeer.Parameters["@p_codPedido"].Value = CodPedido;
             cmdDelete.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
@@ -310,17 +283,21 @@ namespace CompraComponentes.App_Code
                 con.Close();
             }
         }
-        public void ActualizarLineaPedido(int CodPedido, int NumLinea, int CodProducto, int unidades)
+        public void ActualizarLineaPedido(int CodPedido, int NumLinea, int CodProveedor ,int CodProducto, int unidades)
         {
             SqlConnection con = new SqlConnection(ConnectionString);
             SqlCommand cmdLeer = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo", con);
+            cmdLeer.CommandType = CommandType.StoredProcedure;
             cmdLeer.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
             cmdLeer.Parameters["@p_codPedido"].Value = CodPedido;
             SqlCommand cmdActualizar = new SqlCommand("WEB.actualizar_pedido", con);
+            cmdActualizar.CommandType = CommandType.StoredProcedure;
             cmdActualizar.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
             cmdActualizar.Parameters["@p_codPedido"].Value = CodPedido;
             cmdActualizar.Parameters.Add(new SqlParameter("@p_NumLinea", SqlDbType.Int));
             cmdActualizar.Parameters["@p_NumLinea"].Value = NumLinea;
+            cmdActualizar.Parameters.Add(new SqlParameter("@p_CodProveedor", SqlDbType.Int));
+            cmdActualizar.Parameters["@p_CodProveedor"].Value = CodProveedor;
             cmdActualizar.Parameters.Add(new SqlParameter("@p_CodProducto", SqlDbType.Int));
             cmdActualizar.Parameters["@p_CodProducto"].Value = CodProducto;
             cmdActualizar.Parameters.Add(new SqlParameter("@p_Cantidad", SqlDbType.Int));
@@ -336,10 +313,12 @@ namespace CompraComponentes.App_Code
                          (int)lector.GetInt32(0),
                          (int)lector.GetInt32(1),
                          (int)lector.GetInt32(2),
-                         (int)lector.GetInt32(3)
+                         (int)lector.GetInt32(3),
+                         (int)lector.GetInt32(4)
                         );
                     lista.Add(prod);
                 }
+                lector.Close();
                 cmdActualizar.ExecuteNonQuery();
             }
             catch (SqlException err)

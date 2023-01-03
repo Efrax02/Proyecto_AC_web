@@ -54,11 +54,11 @@ FROM SGE_Pedidos_Tienda
 WHERE FechaPed = @p_fechaPedido
 
 ALTER PROCEDURE [WEB].[mostrar_lineas_pedidos_por_codigo]
-@p_codPedido as nchar(10)
+@p_codPedido as int
 AS
-SELECT CodPedido, NumLinea, CodProducto, Unidades
+SELECT CodPedido, NumLinea, CodProveedor, CodProducto, Unidades
 FROM SGE_LineasDePedidos_Tienda
-WHERE CodPedido = '1'
+WHERE CodPedido = @p_codPedido
 
 ALTER PROCEDURE [WEB].[mostrar_lineas_pedidos_insertar]
 AS
@@ -70,18 +70,20 @@ CREATE PROCEDURE [WEB].[eliminar_pedido]
 AS 
 DELETE FROM SGE_Pedidos_Tienda WHERE CodPedido = @p_codPedido
 
-DELETE FROM SGE_Lineas_Pedidos_Tienda WHERE CodPedido = @p_codPedido
+DELETE FROM SGE_LineasDePedidos_Tienda WHERE CodPedido = @p_codPedido
 
 
-CREATE PROCEDURE [WEB].[actualizar_pedido]
+ALTER PROCEDURE [WEB].[actualizar_pedido]
 @p_codPedido as int,
 @p_NumLinea as int,
+@p_CodProveedor as int,
 @p_CodProducto as int,
 @p_Cantidad as int
 AS
-UPDATE SGE_Lineas_Pedidos_Tienda
-SET CodProducto = @p_CodProducto,
-	Cantidad = @p_Cantidad
+UPDATE SGE_LineasDePedidos_Tienda
+SET CodProveedor=@p_CodProveedor,
+	CodProducto = @p_CodProducto,
+	Unidades = @p_Cantidad
 WHERE CodPedido = @p_CodPedido
 
 ALTER PROCEDURE [WEB].[mostrar_lineas_pedidos_Codigo]

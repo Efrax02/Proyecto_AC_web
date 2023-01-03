@@ -9,23 +9,37 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Label ID="Label1" runat="server" Text="Código de pedido"></asp:Label><br />
-            <asp:TextBox ID="CodPedido" runat="server"></asp:TextBox>
-            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
-            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
-            <asp:ObjectDataSource ID="MostararDatosPedidos" runat="server" SelectMethod="MostrarPedidos" TypeName="CompraComponentes.App_Code.DB_Pedidos">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="Label1" PropertyName="Text" Name="CodPedido" Type="Int32"></asp:ControlParameter>
-                </SelectParameters>
-            </asp:ObjectDataSource>
-            <asp:DetailsView ID="LineasPedido" runat="server" Height="50px" Width="125px" DataSourceID="MostararDatosPedidos" AutoGenerateRows="False">
-                <Fields>
-                    <asp:BoundField DataField="CodPedido" HeaderText="CodPedido" SortExpression="CodPedido"></asp:BoundField>
-                    <asp:BoundField DataField="NumLinea" HeaderText="NumLinea" SortExpression="NumLinea"></asp:BoundField>
-                    <asp:BoundField DataField="CodProducto" HeaderText="CodProducto" SortExpression="CodProducto"></asp:BoundField>
-                    <asp:BoundField DataField="Unidades" HeaderText="Unidades" SortExpression="Unidades"></asp:BoundField>
-                </Fields>                
-            </asp:DetailsView>
+        <asp:SqlDataSource ID="or_MostrarCodPedido" runat="server"
+            ConnectionString='<%$ ConnectionStrings:DAM2-EfrainhernandezSPYRO %>'
+            SelectCommand="SELECT CodPedido FROM SGE_LineasDePedidos_Tienda GROUP BY CodPedido"></asp:SqlDataSource>
+              
+        <asp:DropDownList ID="lstCodPedidos"
+            runat="server"
+            DataSourceID="or_MostrarCodPedido"
+            DataTextField="CodPedido"
+            DataValueField="CodPedido"
+            AutoPostBack="True" OnSelectedIndexChanged="AsginarCod">
+        </asp:DropDownList>
+        <asp:Label ID="Label1" runat="server" Text="Códigos de pedido"></asp:Label>
+        <asp:TextBox ID="txtCodPedido" runat="server"></asp:TextBox>
+        <asp:ObjectDataSource ID="or_EliminarPedidos" runat="server" DeleteMethod="EliminarPedido" SelectMethod="MostrarPedidosCodPedido" TypeName="CompraComponentes.App_Code.DB_Pedidos">
+            <DeleteParameters>
+                <asp:Parameter  Name="CodPedido" Type="Int32"></asp:Parameter>
+            </DeleteParameters>
+            <SelectParameters>
+                <asp:ControlParameter ControlID="txtCodPedido" PropertyName="Text" Name="CodPedido" Type="Int32"></asp:ControlParameter>
+            </SelectParameters>
+        </asp:ObjectDataSource>
+        <asp:GridView ID="grdDatosLineasPedidos" runat="server" AutoGenerateColumns="False" DataSourceID="or_EliminarPedidos">
+            <Columns>
+                <asp:CommandField ShowDeleteButton="True"></asp:CommandField>
+                <asp:BoundField DataField="CodPedido" HeaderText="CodPedido" SortExpression="CodPedido"></asp:BoundField>
+                <asp:BoundField DataField="NumLinea" HeaderText="NumLinea" SortExpression="NumLinea"></asp:BoundField>
+                <asp:BoundField DataField="CodProveedor" HeaderText="CodProveedor" SortExpression="CodProveedor"></asp:BoundField>
+                <asp:BoundField DataField="CodProducto" HeaderText="CodProducto" SortExpression="CodProducto"></asp:BoundField>
+                <asp:BoundField DataField="Unidades" HeaderText="Unidades" SortExpression="Unidades"></asp:BoundField>
+            </Columns>
+        </asp:GridView>
         <div>
         </div>
     </form>

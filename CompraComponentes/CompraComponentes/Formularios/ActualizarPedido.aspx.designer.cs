@@ -30,7 +30,7 @@ namespace CompraComponentes.Formularios
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource or_MostrarCodPedido;
+        protected global::System.Web.UI.WebControls.SqlDataSource or_MostrarCodPedido;
 
         /// <summary>
         /// Control Label1.
@@ -60,12 +60,12 @@ namespace CompraComponentes.Formularios
         protected global::System.Web.UI.WebControls.ObjectDataSource or_ActualizarPedidos;
 
         /// <summary>
-        /// Control GridView1.
+        /// Control grdDatosLineasPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grdDatosLineasPedidos;
     }
 }

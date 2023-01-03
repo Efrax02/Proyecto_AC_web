@@ -13,5 +13,12 @@ namespace CompraComponentes.Formularios
         {
 
         }
+
+        protected void AsginarCod(object sender, EventArgs e)
+        {
+            txtCodPedido.Text = lstCodPedidos.SelectedValue.ToString();
+            
+        }
+
     }
 }
