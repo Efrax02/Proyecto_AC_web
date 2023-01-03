@@ -9,8 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label1" runat="server" Text="Código de pedido"></asp:Label><br />
+        <asp:Label ID="Label1" runat="server" Text="Código de pedido"></asp:Label><br />
             <asp:TextBox ID="CodPedido" runat="server"></asp:TextBox>
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
             <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
@@ -27,6 +26,7 @@
                     <asp:BoundField DataField="Unidades" HeaderText="Unidades" SortExpression="Unidades"></asp:BoundField>
                 </Fields>                
             </asp:DetailsView>
+        <div>
         </div>
     </form>
 </body>

@@ -24,40 +24,40 @@ namespace CompraComponentes.Formularios
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control CodPedido.
+        /// Control or_MostrarCodPedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CodPedido;
+        protected global::System.Web.UI.WebControls.ObjectDataSource or_MostrarCodPedido;
 
         /// <summary>
-        /// Control txtCodPedido.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodPedido;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control btnBuscar.
+        /// Control lstCodPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.WebControls.DropDownList lstCodPedidos;
 
         /// <summary>
-        /// Control ActualizarPedidos.
+        /// Control or_ActualizarPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ActualizarPedidos;
+        protected global::System.Web.UI.WebControls.ObjectDataSource or_ActualizarPedidos;
 
         /// <summary>
         /// Control GridView1.

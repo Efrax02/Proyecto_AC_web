@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A6CDD744-6DFD-4A7C-B258-DCC434263FEB}</ProjectGuid>
+    <ProjectGuid>{CE9B692F-A4F2-4480-A13F-DBD0FE1BDFED}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -69,16 +69,18 @@
   <ItemGroup>
     <Content Include="Formularios\ActualizarPedido.aspx" />
     <Content Include="Formularios\EliminarPedido.aspx" />
+    <Content Include="Formularios\MostrarProductos.aspx" />
     <Content Include="Formularios\NuevoPedido.aspx" />
     <Content Include="SQL\Procedimiento de Proyecto.sql" />
     <Content Include="SQL\ProcedimientosAlamacenados.sql" />
     <Content Include="Web.config" />
-    <Content Include="Formularios\WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\Proveedores.cs" />
     <Content Include="App_Code\Pedidos_Tienda.cs" />
+    <Content Include="App_Code\Productos_Proveedores.cs" />
+    <Content Include="App_Code\Proveedores.cs" />
     <Content Include="App_Code\Factura_Compra.cs" />
+    <Content Include="App_Code\DB_Pedidos.cs" />
     <Compile Include="Formularios\ActualizarPedido.aspx.cs">
       <DependentUpon>ActualizarPedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -93,6 +95,13 @@
     <Compile Include="Formularios\EliminarPedido.aspx.designer.cs">
       <DependentUpon>EliminarPedido.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\MostrarProductos.aspx.cs">
+      <DependentUpon>MostrarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\MostrarProductos.aspx.designer.cs">
+      <DependentUpon>MostrarProductos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\NuevoPedido.aspx.cs">
       <DependentUpon>NuevoPedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -100,15 +109,6 @@
     <Compile Include="Formularios\NuevoPedido.aspx.designer.cs">
       <DependentUpon>NuevoPedido.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Content Include="App_Code\DB_Pedidos.cs" />
-    <Content Include="App_Code\Productos_Proveedores.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +120,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -133,9 +134,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50589</DevelopmentServerPort>
+          <DevelopmentServerPort>62079</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50589/</IISUrl>
+          <IISUrl>http://localhost:62079/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -11,7 +11,7 @@ namespace CompraComponentes.Formularios
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -9,12 +9,12 @@ namespace CompraComponentes.App_Code
     public class Productos_Proveedores
     {
         public Productos_Proveedores(
-            int CodProducto, 
-            int CodProveedor, 
-            string NombreProd, 
-            SqlMoney PrecioCoste, 
-            int Existencias, 
-            int StokcMax, 
+            int CodProducto,
+            int CodProveedor,
+            string NombreProd,
+            SqlMoney PrecioCoste,
+            int Existencias,
+            int StokcMax,
             int StokcMin)
         {
             codProducto = CodProducto;
@@ -27,7 +27,7 @@ namespace CompraComponentes.App_Code
         }
 
         public Productos_Proveedores(
-            int CodProducto, 
+            int CodProducto,
             string NombreProd)
         {
             codProducto = CodProducto;
@@ -35,37 +35,37 @@ namespace CompraComponentes.App_Code
         }
 
         private int codProducto;
-        public int CodProducto 
-        { 
-            get { return codProducto; } 
-            set{ codProducto = value; }
+        public int CodProducto
+        {
+            get { return codProducto; }
+            set { codProducto = value; }
         }
         private int codProveedor;
-        public int CodProveedor 
+        public int CodProveedor
         {
             get { return codProveedor; }
             set { codProveedor = value; }
         }
         private string nombreProd;
-        public string NombreProd 
+        public string NombreProd
         {
             get { return nombreProd; }
             set { nombreProd = value; }
         }
         private SqlMoney precioCoste;
-        public SqlMoney PrecioCoste 
+        public SqlMoney PrecioCoste
         {
             get { return precioCoste; }
             set { precioCoste = value; }
         }
         private int existencias;
-        public int Existencias 
+        public int Existencias
         {
             get { return existencias; }
             set { existencias = value; }
         }
         private int stokcMax;
-        public int StokcMax 
+        public int StokcMax
         {
             get { return stokcMax; }
             set { stokcMax = value; }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="CompraComponentes.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MostrarProductos.aspx.cs" Inherits="CompraComponentes.MostrarProductos" %>
 
 <!DOCTYPE html>
 
@@ -10,15 +10,13 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:ObjectDataSource ID="or_ProductosProveedores" runat="server" SelectMethod="MostrarProductos" TypeName="CompraComponentes.App_Code.DB_Pedidos"></asp:ObjectDataSource>
 
-            <asp:ObjectDataSource ID="ProductosProveedores" runat="server" SelectMethod="MostrarProductos" TypeName="CompraComponentes.App_Code.DB_Pedidos"></asp:ObjectDataSource>
-
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CodProducto" DataSourceId="ProductosProveedores">
+            <asp:GridView ID="grd_Productos" runat="server" AutoGenerateColumns="False" DataSourceID="or_ProductosProveedores">
                 <Columns>
-                    <asp:BoundField DataField="CodProducto" HeaderText="CodProducto" ReadOnly="True" SortExpression="CodProducto"></asp:BoundField>
+                    <asp:BoundField DataField="CodProducto" HeaderText="CodProducto" SortExpression="CodProducto"></asp:BoundField>
                     <asp:BoundField DataField="CodProveedor" HeaderText="CodProveedor" SortExpression="CodProveedor"></asp:BoundField>
                     <asp:BoundField DataField="NombreProd" HeaderText="NombreProd" SortExpression="NombreProd"></asp:BoundField>
-                    <asp:BoundField DataField="PrecioCoste" HeaderText="PrecioCoste" SortExpression="PrecioCoste"></asp:BoundField>
                     <asp:BoundField DataField="Existencias" HeaderText="Existencias" SortExpression="Existencias"></asp:BoundField>
                     <asp:BoundField DataField="StokcMax" HeaderText="StokcMax" SortExpression="StokcMax"></asp:BoundField>
                     <asp:BoundField DataField="StokcMin" HeaderText="StokcMin" SortExpression="StokcMin"></asp:BoundField>

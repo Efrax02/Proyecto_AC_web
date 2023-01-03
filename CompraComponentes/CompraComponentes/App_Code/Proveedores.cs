@@ -7,11 +7,11 @@ namespace CompraComponentes.App_Code
 {
     public class Proveedores
     {
-        public Proveedores(int CodProveedor, 
-        string CodFiscalProveedor, 
-        string NombreProveedor, 
-        string Telefono, 
-        string Direccion, 
+        public Proveedores(int CodProveedor,
+        string CodFiscalProveedor,
+        string NombreProveedor,
+        string Telefono,
+        string Direccion,
         string Email)
         {
             codProveedor = CodProveedor;
@@ -30,9 +30,9 @@ namespace CompraComponentes.App_Code
         private int codProveedor;
         public int CodProveedor
         {
-            get{ return codProveedor;}
-            set{ codProveedor = value; }
-        }        
+            get { return codProveedor; }
+            set { codProveedor = value; }
+        }
         private string codFiscalProveedor;
         public string CodFiscalProveedor
         {

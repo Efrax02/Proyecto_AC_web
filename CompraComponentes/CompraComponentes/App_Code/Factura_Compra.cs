@@ -8,7 +8,7 @@ namespace CompraComponentes.App_Code
 {
     public class Factura_Compra
     {
-        public Factura_Compra(int CodFactura, int CodCliente, SqlDateTime Fecha , SqlBinary Pagada)
+        public Factura_Compra(int CodFactura, int CodCliente, SqlDateTime Fecha, SqlBinary Pagada)
         {
             codFactura = CodFactura;
             codClinete = CodCliente;
@@ -30,8 +30,8 @@ namespace CompraComponentes.App_Code
         private SqlDateTime fecha;
         public SqlDateTime Fecha
         {
-            get { return fecha;}
-            set { fecha = value;}
+            get { return fecha; }
+            set { fecha = value; }
         }
         private SqlBinary pagada;
         public SqlBinary Pagada
@@ -83,7 +83,7 @@ namespace CompraComponentes.App_Code
             set { cantidad = value; }
         }
         private SqlMoney total;
-        public SqlMoney Total 
+        public SqlMoney Total
         {
             get { return total; }
             set { total = value; }

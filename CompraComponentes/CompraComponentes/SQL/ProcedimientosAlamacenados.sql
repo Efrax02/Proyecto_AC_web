@@ -8,6 +8,7 @@ ALTER PROCEDURE [WEB].[realizar_pedido]
 --@p_fechaPed as smalldatetime,
 --@p_fechaEntrgas as smalldatetime,
 @p_CodPedido as int,
+@p_CodProveedor as int,
 @p_codProducto as int,
 @p_unidades as int
 AS
@@ -20,9 +21,9 @@ Begin
 			INSERT INTO SGE_Pedidos_Tienda (CodPedido, FechaPed/*,FechaEntrega*/)
 			VALUES (@v_ultimocodPed,GETDATE()/*,@p_fechaEntrgas*/)
 
-			set @v_ultimoLineaPed = (SELECT ISNULL(MAX(NumLinea) + 1 , 1) FROM SGE_LíneasDePedidos_Tienda)
-			INSERT INTO SGE_LíneasDePedidos_Tienda(CodPedido,NumLinea,CodProducto,Unidades)
-			VALUES (@p_CodPedido,@v_ultimoLineaPed,@p_codProducto,@p_Unidades)
+			set @v_ultimoLineaPed = (SELECT ISNULL(MAX(NumLinea) + 1 , 1) FROM SGE_LineasDePedidos_Tienda)
+			INSERT INTO SGE_LineasDePedidos_Tienda(CodPedido,NumLinea,CodProveedor,CodProducto,Unidades)
+			VALUES (@p_CodPedido,@v_ultimoLineaPed,@p_CodProveedor,@p_codProducto,@p_Unidades)
 	--	commit transaction
 	--End try
 	--Begin Catch
@@ -56,13 +57,13 @@ ALTER PROCEDURE [WEB].[mostrar_lineas_pedidos_por_codigo]
 @p_codPedido as nchar(10)
 AS
 SELECT CodPedido, NumLinea, CodProducto, Unidades
-FROM SGE_LíneasDePedidos_Tienda
+FROM SGE_LineasDePedidos_Tienda
 WHERE CodPedido = '1'
 
 ALTER PROCEDURE [WEB].[mostrar_lineas_pedidos_insertar]
 AS
 SELECT CodPedido, NumLinea, CodProducto, Unidades
-FROM SGE_LíneasDePedidos_Tienda
+FROM SGE_LineasDePedidos_Tienda
 
 CREATE PROCEDURE [WEB].[eliminar_pedido]
 @p_codPedido as int
@@ -73,7 +74,7 @@ DELETE FROM SGE_Lineas_Pedidos_Tienda WHERE CodPedido = @p_codPedido
 
 
 CREATE PROCEDURE [WEB].[actualizar_pedido]
-@p_CodPedido as int,
+@p_codPedido as int,
 @p_NumLinea as int,
 @p_CodProducto as int,
 @p_Cantidad as int
@@ -82,3 +83,9 @@ UPDATE SGE_Lineas_Pedidos_Tienda
 SET CodProducto = @p_CodProducto,
 	Cantidad = @p_Cantidad
 WHERE CodPedido = @p_CodPedido
+
+ALTER PROCEDURE [WEB].[mostrar_lineas_pedidos_Codigo]
+AS
+SELECT CodPedido
+FROM SGE_LineasDePedidos_Tienda
+GROUP BY CodPedido
