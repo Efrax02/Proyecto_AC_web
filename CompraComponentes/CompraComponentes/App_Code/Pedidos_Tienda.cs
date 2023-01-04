@@ -37,6 +37,7 @@ namespace CompraComponentes.App_Code
 
     public class Lineas_Pedidos_Tienda
     {
+        public Lineas_Pedidos_Tienda(){}
         public Lineas_Pedidos_Tienda(int CodPedido, int NumLinea, int CodProveedor, int CodProducto, int Unidades)
         {
             codPedido = CodPedido;
@@ -52,7 +53,6 @@ namespace CompraComponentes.App_Code
             codProducto = CodProducto;
             unidades = Unidades;
         }
-
         public Lineas_Pedidos_Tienda(int codPedido)
         {
             CodProveedor = codProveedor;

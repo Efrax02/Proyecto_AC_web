@@ -255,24 +255,16 @@ namespace CompraComponentes.App_Code
         }
         public void EliminarPedido(int CodPedido)
         {
-            SqlConnection con = new SqlConnection(ConnectionString);
-            SqlCommand cmdLeer = new SqlCommand("WEB.mostrar_lineas_pedidos_por_codigo", con);
+            SqlConnection con = new SqlConnection(ConnectionString);            
             SqlCommand cmdDelete = new SqlCommand("WEB.eliminar_pedido", con);
-            cmdLeer.CommandType = CommandType.StoredProcedure;
             cmdDelete.CommandType = CommandType.StoredProcedure;
-            cmdLeer.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
-            cmdLeer.Parameters["@p_codPedido"].Value = CodPedido;
             cmdDelete.Parameters.Add(new SqlParameter("@p_codPedido", SqlDbType.Int));
             cmdDelete.Parameters["@p_codPedido"].Value = CodPedido;
             try
             {
-                con.Open();
-                SqlDataReader lector = cmdLeer.ExecuteReader();
-                while (lector.Read())
-                {
-                    cmdDelete.ExecuteNonQuery();
-                }
-                lector.Close();
+                con.Open();               
+                cmdDelete.ExecuteNonQuery();
+                
             }
             catch (SqlException err)
             {
@@ -320,6 +312,72 @@ namespace CompraComponentes.App_Code
                 }
                 lector.Close();
                 cmdActualizar.ExecuteNonQuery();
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException($"Error en los datos {err.Message}");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        /*
+        public List<Lineas_Pedidos_Tienda> MostrarCodPedidos()
+        {
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.Codigos_Pedidos", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            List<Lineas_Pedidos_Tienda> lista = new List<Lineas_Pedidos_Tienda>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Lineas_Pedidos_Tienda prod = new Lineas_Pedidos_Tienda(
+                        (int)lector.GetInt32(0)                       
+                        );
+                    lista.Add(prod);
+                }
+                lector.Close();
+                return lista;
+            }
+            catch (SqlException err)
+            {
+                throw new ApplicationException($"Error en los datos {err.Message}");
+            }
+            finally
+            {
+                con.Close();
+            }
+        }*/
+
+        public List<Pedidos_Tienda> MostrarPedidos(int CodPedido)
+        {
+            SqlConnection con = new SqlConnection(ConnectionString);
+            SqlCommand cmd = new SqlCommand("WEB.mostrar_pedidos_Codigo", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@p_CodPedido", SqlDbType.Int));
+            cmd.Parameters["@p_CodPedido"].Value = CodPedido;
+            List<Pedidos_Tienda> lista = new List<Pedidos_Tienda>();
+            try
+            {
+                con.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                while (lector.Read())
+                {
+                    Pedidos_Tienda ped = new Pedidos_Tienda(
+                        (int)lector.GetInt32(0),
+                        (SqlDateTime)lector.GetSqlDateTime(1),
+                        (SqlDateTime)lector.GetSqlDateTime(2)
+                        );
+                    lista.Add(ped);
+                }
+                lector.Close();
+                return lista;
             }
             catch (SqlException err)
             {

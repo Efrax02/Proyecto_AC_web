@@ -3,6 +3,11 @@ AS
 SELECT CodProducto, CodProveedor, NombreProd,PrecioCoste,Existencias,StokcMax,StokcMin
 FROM SGE_Productos_Proveedores
 
+ALTER PROCEDURE [WEB].[Codigos_Pedidos]
+AS
+SELECT CodPedido,CodPedido
+FROM SGE_LineasDePedidos_Tienda
+
 
 ALTER PROCEDURE [WEB].[realizar_pedido]
 --@p_fechaPed as smalldatetime,
@@ -65,13 +70,12 @@ AS
 SELECT CodPedido, NumLinea, CodProducto, Unidades
 FROM SGE_LineasDePedidos_Tienda
 
-CREATE PROCEDURE [WEB].[eliminar_pedido]
+ALTER PROCEDURE [WEB].[eliminar_pedido]
 @p_codPedido as int
 AS 
-DELETE FROM SGE_Pedidos_Tienda WHERE CodPedido = @p_codPedido
-
 DELETE FROM SGE_LineasDePedidos_Tienda WHERE CodPedido = @p_codPedido
 
+DELETE FROM SGE_Pedidos_Tienda WHERE CodPedido = @p_codPedido
 
 ALTER PROCEDURE [WEB].[actualizar_pedido]
 @p_codPedido as int,
@@ -91,3 +95,10 @@ AS
 SELECT CodPedido
 FROM SGE_LineasDePedidos_Tienda
 GROUP BY CodPedido
+
+CREATE PROCEDURE [WEB].[mostrar_pedidos_Codigo]
+@p_CodPedido as int
+AS
+SELECT CodPedido,FechaPed,FechaEntrega
+FROM SGE_Pedidos_Tienda
+WHERE CodPedido = @p_CodPedido

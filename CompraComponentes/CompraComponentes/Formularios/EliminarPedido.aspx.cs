@@ -14,11 +14,13 @@ namespace CompraComponentes.Formularios
 
         }
 
-        protected void AsginarCod(object sender, EventArgs e)
-        {
-            txtCodPedido.Text = lstCodPedidos.SelectedValue.ToString();
-            
-        }
+        //protected void AsginarCod(object sender, EventArgs e)
+        //{
+        //    if(!IsPostBack) 
+        //    {
+        //        txtCodPedido.Text = lstCodPedidos.SelectedValue.ToString();
+        //    }
+        //}
 
     }
 }
