@@ -30,7 +30,7 @@ namespace CompraComponentes.Formularios
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource or_NombresProveedores;
+        protected global::System.Web.UI.WebControls.SqlDataSource or_NombresProveedores;
 
         /// <summary>
         /// Control Label1.
@@ -57,7 +57,7 @@ namespace CompraComponentes.Formularios
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource or_NombresProductos;
+        protected global::System.Web.UI.WebControls.SqlDataSource or_NombresProductos;
 
         /// <summary>
         /// Control Label2.
@@ -94,6 +94,24 @@ namespace CompraComponentes.Formularios
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DetailsView dtsDatosInsertar;
+
+        /// <summary>
+        /// Control btnlVerProveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnlVerProveedores;
+
+        /// <summary>
+        /// Control btnlVerProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnlVerProductos;
 
         /// <summary>
         /// Control txtCodPedido.

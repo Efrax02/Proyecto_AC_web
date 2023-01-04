@@ -67,9 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Formularios\ActualizarPedido.aspx" />
-    <Content Include="Formularios\EliminarPedido.aspx" />
     <Content Include="Formularios\MostrarProductos.aspx" />
+    <Content Include="Formularios\MostrarProveedores.aspx" />
     <Content Include="Formularios\NuevoPedido.aspx" />
     <Content Include="SQL\Procedimiento de Proyecto.sql" />
     <Content Include="SQL\ProcedimientosAlamacenados.sql" />
@@ -81,26 +80,19 @@
     <Content Include="App_Code\Proveedores.cs" />
     <Content Include="App_Code\Factura_Compra.cs" />
     <Content Include="App_Code\DB_Pedidos.cs" />
-    <Compile Include="Formularios\ActualizarPedido.aspx.cs">
-      <DependentUpon>ActualizarPedido.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\ActualizarPedido.aspx.designer.cs">
-      <DependentUpon>ActualizarPedido.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\EliminarPedido.aspx.cs">
-      <DependentUpon>EliminarPedido.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Formularios\EliminarPedido.aspx.designer.cs">
-      <DependentUpon>EliminarPedido.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\MostrarProductos.aspx.cs">
       <DependentUpon>MostrarProductos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Formularios\MostrarProductos.aspx.designer.cs">
       <DependentUpon>MostrarProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\MostrarProveedores.aspx.cs">
+      <DependentUpon>MostrarProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\MostrarProveedores.aspx.designer.cs">
+      <DependentUpon>MostrarProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\NuevoPedido.aspx.cs">
       <DependentUpon>NuevoPedido.aspx</DependentUpon>

@@ -13,5 +13,15 @@ namespace CompraComponentes.Formularios
         {
 
         }
+
+        protected void btnlVerProductos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MostrarProductos.aspx");
+        }
+
+        protected void btnlVerProveedores_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MostrarProveedores.aspx");
+        }
     }
 }
