@@ -1,4 +1,4 @@
-CREATE PROCEDURE [WEB].[mostrar_proveedores]
+ALTER PROCEDURE [WEB].[mostrar_proveedores]
 AS
 SELECT CodProveedor, CodFiscal, NombreProv, Telef, Direccion, Email
 FROM SGE_Proveedores
@@ -24,6 +24,7 @@ ALTER PROCEDURE [WEB].[realizar_pedido]
 AS
 declare @v_ultimocodPed int
 declare @v_ultimoLineaPed int
+declare @v_existencias int
 Begin
 	--Begin Transaction
 	--	Begin Try			
@@ -32,6 +33,7 @@ Begin
 					set @v_ultimoLineaPed = (SELECT ISNULL(MAX(NumLinea) + 1 , 1) FROM SGE_LineasDePedidos_Tienda)
 					INSERT INTO SGE_LineasDePedidos_Tienda(CodPedido,NumLinea,CodProveedor,CodProducto,Unidades)
 					VALUES (@p_CodPedido,@v_ultimoLineaPed,@p_CodProveedor,@p_codProducto,@p_Unidades)
+										
 				END
 			ELSE 
 				BEGIN
@@ -43,6 +45,15 @@ Begin
 					INSERT INTO SGE_LineasDePedidos_Tienda(CodPedido,NumLinea,CodProveedor,CodProducto,Unidades)
 					VALUES (@v_ultimocodPed,@v_ultimoLineaPed,@p_CodProveedor,@p_codProducto,@p_Unidades)
 				END
+
+			set @v_existencias = (SELECT Existencias FROM SGE_Productos_Proveedores WHERE CodProducto = @p_codProducto)
+
+			IF((SELECT Existencias FROM SGE_Productos_Proveedores) > 0)
+				BEGIN
+					UPDATE SGE_Productos_Proveedores 
+					SET Existencias = (@v_existencias - @p_unidades)
+					WHERE CodProducto = @p_codProducto
+				END
 			
 	--	commit transaction
 	--End try
@@ -51,12 +62,12 @@ Begin
 	--End Catch
 End
 
-CREATE PROCEDURE [WEB].[mostrar_pedidos_fecha]
+ALTER PROCEDURE [WEB].[mostrar_pedidos_fecha]
 AS
 SELECT CodPedido,FechaPed
 FROM SGE_Pedidos_Tienda
 
-CREATE PROCEDURE [WEB].[mostrar_pedidos_por_fecha]
+ALTER PROCEDURE [WEB].[mostrar_pedidos_por_fecha]
 @p_fechaPedido as smalldatetime
 AS
 SELECT CodPedido, FechaPed, FechaEntrega
@@ -106,7 +117,7 @@ SELECT CodPedido
 FROM SGE_LineasDePedidos_Tienda
 GROUP BY CodPedido
 
-CREATE PROCEDURE [WEB].[mostrar_pedidos_Codigo]
+ALTER PROCEDURE [WEB].[mostrar_pedidos_Codigo]
 @p_CodPedido as int
 AS
 SELECT CodPedido,FechaPed,FechaEntrega
