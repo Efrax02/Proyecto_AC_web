@@ -67,9 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Formularios\Loggin.aspx" />
     <Content Include="Formularios\MostrarProductos.aspx" />
     <Content Include="Formularios\MostrarProveedores.aspx" />
     <Content Include="Formularios\NuevoPedido.aspx" />
+    <Content Include="Imagenes\Usuario.png" />
     <Content Include="SQL\Procedimiento de Proyecto.sql" />
     <Content Include="SQL\ProcedimientosAlamacenados.sql" />
     <Content Include="Web.config" />
@@ -80,6 +82,13 @@
     <Content Include="App_Code\Proveedores.cs" />
     <Content Include="App_Code\Factura_Compra.cs" />
     <Content Include="App_Code\DB_Pedidos.cs" />
+    <Compile Include="Formularios\Loggin.aspx.cs">
+      <DependentUpon>Loggin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Loggin.aspx.designer.cs">
+      <DependentUpon>Loggin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\MostrarProductos.aspx.cs">
       <DependentUpon>MostrarProductos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
