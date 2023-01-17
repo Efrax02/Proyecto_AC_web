@@ -123,3 +123,18 @@ AS
 SELECT CodPedido,FechaPed,FechaEntrega
 FROM SGE_Pedidos_Tienda
 WHERE CodPedido = @p_CodPedido
+
+CREATE PROCEDURE [WEB].[usuario_nuevo]
+@p_Usuario as char(15),
+@p_Contraseña as varchar(100)
+AS
+INSERT INTO SGE_Login (Usuario,Contraseña)
+VALUES (@p_Usuario, @p_Contraseña)
+
+CREATE PROCEDURE [WEB].[obtener_usuario]
+@p_Usuario as char(15),
+@p_Contraseña as varchar(100)
+AS
+SELECT Usuario
+FROM SGE_Login
+WHERE Usuario = @p_Usuario AND Contraseña = @p_Contraseña
