@@ -32,6 +32,10 @@ namespace Servicios
             SqlCommand cmdIniciarSesion = new SqlCommand("WEB.obtener_usuario", con);
             cmdIniciarSesion.CommandType = CommandType.StoredProcedure;
 
+            cmdIniciarSesion.Parameters.Add(new SqlParameter("@p_Usuario", SqlDbType.Char, 15));
+            cmdIniciarSesion.Parameters["@p_Usuario"].Value = usuario;
+            cmdIniciarSesion.Parameters.Add(new SqlParameter("@p_Contraseña", SqlDbType.VarChar, 100));
+            cmdIniciarSesion.Parameters["@p_Contraseña"].Value = contraseña;
             try
             {
 
