@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -12,7 +13,7 @@ namespace Servicios
     public interface IServicios
     {
         [OperationContract]
-        Sesion IniciarSesion(string usuario, string contraseña);
-        void NuevoUsuario(string usuario, string contraseña);
+        bool IniciarSesion(string usuario, string contraseña);
+        void NuevoUsuario(string usuario, string contraseña, string nombre, string apellido);
     }
 }
