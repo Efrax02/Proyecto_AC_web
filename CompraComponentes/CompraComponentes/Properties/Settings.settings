@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CompraComponentes.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CompraComponentes_ServicioLoggin_ServicioLoggin" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:50203/ServicioLoggin.asmx</Value>
+    </Setting>
+    <Setting Name="CompraComponentes_ServicioNuevoUsuario_ServicioCrearUsuario" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:50203/ServicioCrearUsuario.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

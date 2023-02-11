@@ -26,9 +26,6 @@ namespace CompraComponentes.Formularios
             Response.Redirect("MostrarProveedores.aspx");
         }
 
-        //SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["DAM2-EfrainHernandezSEIM"].ConnectionString);
-        //SqlCommand cmdVerPedidos = new SqlCommand("SELECT * FROM SGE_Productos_Proveedores", con);
-
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             

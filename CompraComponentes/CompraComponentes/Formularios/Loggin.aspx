@@ -1,6 +1,4 @@
-﻿
-
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Loggin.aspx.cs" Inherits="CompraComponentes.Formularios.Loggin" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Loggin.aspx.cs" Inherits="CompraComponentes.Formularios.Loggin" %>
 
 <!DOCTYPE html>
 
@@ -15,13 +13,14 @@
             <div id="Icono">
             <asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/Usuario.png" Width="150" Height="150"/>
             </div>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><br />
+            <asp:Label ID="lblRes" runat="server"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Usuario"></asp:Label><br />
             <asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox><br />
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label><br />
-            <input id="txtContraseña" type="password" /><br />
-            <asp:Button ID="Button1" runat="server" Text="Button" />
-            <asp:LoginView runat="server"></asp:LoginView>
-
+            <asp:Label ID="Label2" runat="server" Text="Contraseña"></asp:Label><br />
+            <asp:TextBox ID="txtContraseña" runat="server" ></asp:TextBox>    
+            <br />
+            <asp:Button OnClick="btnIniciar_Click" ID="btnIniciar" runat="server" Text="Iniciar seisón" /><br />
+            <asp:LinkButton OnClick="btnCrearUsuario_Click" ID="btnCrearUsuario" runat="server" >No tienes cuenta? Crear Cuenta</asp:LinkButton>
         </div>
     </form>
 </body>

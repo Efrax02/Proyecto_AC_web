@@ -113,9 +113,8 @@ INSERT INTO SGE_Login (Nom_Usuario,Contraseña,Nombre,Apellido)
 VALUES (@p_Usuario, @p_Contraseña,@p_Nombre,@p_Apellido)
 
 ALTER PROCEDURE [WEB].[obtener_usuario]
-@p_Usuario as char(3),
-@p_Contraseña as varchar(100)
+@p_Usuario as char(3)
 AS
-SELECT Nom_Usuario,Contraseña
+SELECT Contraseña
 FROM SGE_Login
-WHERE Nom_Usuario = @p_Usuario AND Contraseña = @p_Contraseña
+WHERE Nom_Usuario = @p_Usuario 

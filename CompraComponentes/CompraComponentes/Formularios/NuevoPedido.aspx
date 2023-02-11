@@ -10,9 +10,6 @@
 <body>
     <form id="form1" runat="server">
         <div>
-                <%--ConnectionString='<%$ ConnectionStrings:DAM2-EfrainhernandezSPYRO %>'--%>
-                <%--ConnectionString='<%$ ConnectionStrings:DAM2-EfrainhernandezSPYRO %>' --%>
-
             <asp:ObjectDataSource ID="or_insertar_pedido" runat="server" InsertMethod="InsertarPedido" SelectMethod="MostrarPedidosInsertar" TypeName="CompraComponentes.App_Code.DB_Pedidos">
                 <InsertParameters>
                     <asp:Parameter Name="CodPedido" Type="Int32"></asp:Parameter>
@@ -42,7 +39,7 @@
             <br /><asp:Label ID="Label1" runat="server" Text="Inserte código de pedido para buscar"></asp:Label>
             <br /><asp:TextBox ID="txtCodPedido" runat="server"></asp:TextBox>
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
-            <asp:Button ID="btnMostrarTodos" runat="server" Text="Ver Pedidos Todos" OnClick="btnMostrarTodos_Click" /><br />
+            <%--<asp:Button ID="btnMostrarTodos" runat="server" Text="Ver Pedidos Todos" OnClick="btnMostrarTodos_Click" />--%><br />
 
             <asp:ObjectDataSource ID="or_Pedidos" runat="server" SelectMethod="MostrarPedidos" TypeName="CompraComponentes.App_Code.DB_Pedidos" DeleteMethod="EliminarPedido">
                 <DeleteParameters>
