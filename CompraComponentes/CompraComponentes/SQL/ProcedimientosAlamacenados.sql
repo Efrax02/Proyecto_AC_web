@@ -8,17 +8,13 @@ AS
 SELECT CodProducto, CodProveedor, NombreProd, PrecioCoste, Existencias, StokcMax, StokcMin
 FROM SGE_Productos_Proveedores
 
-CREATE PROCEDURE [WEB].[Codigos_Pedidos]
-AS
-SELECT CodPedido,CodPedido
-FROM SGE_LineasDePedidos_Tienda
-
 
 CREATE PROCEDURE [WEB].[realizar_pedido]
 @p_CodPedido as int,
 @p_CodProveedor as int,
 @p_codProducto as int,
-@p_unidades as int
+@p_unidades as int,
+@p_salida as int output
 AS
 declare @v_ultimocodPed int
 declare @v_ultimoLineaPed int
@@ -29,7 +25,7 @@ Begin
 					set @v_ultimoLineaPed = (SELECT ISNULL(MAX(NumLinea) + 1 , 1) FROM SGE_LineasDePedidos_Tienda)
 					INSERT INTO SGE_LineasDePedidos_Tienda(CodPedido,NumLinea,CodProveedor,CodProducto,Unidades)
 					VALUES (@p_CodPedido,@v_ultimoLineaPed,@p_CodProveedor,@p_codProducto,@p_Unidades)
-										
+					SET @p_salida = 0	
 				END
 			ELSE 
 				BEGIN
@@ -40,6 +36,8 @@ Begin
 					set @v_ultimoLineaPed = (SELECT ISNULL(MAX(NumLinea) + 1 , 1) FROM SGE_LineasDePedidos_Tienda)
 					INSERT INTO SGE_LineasDePedidos_Tienda(CodPedido,NumLinea,CodProveedor,CodProducto,Unidades)
 					VALUES (@v_ultimocodPed,@v_ultimoLineaPed,@p_CodProveedor,@p_codProducto,@p_Unidades)
+
+					SET @p_salida = 1
 				END
 
 			set @v_existencias = (SELECT Existencias FROM SGE_Productos_Proveedores WHERE CodProducto = @p_codProducto)
@@ -59,11 +57,6 @@ AS
 SELECT CodPedido, NumLinea, CodProveedor, CodProducto, Unidades
 FROM SGE_LineasDePedidos_Tienda
 WHERE CodPedido = @p_codPedido
-
-CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_insertar]
-AS
-SELECT CodPedido, NumLinea, CodProducto, Unidades
-FROM SGE_LineasDePedidos_Tienda
 
 CREATE PROCEDURE [WEB].[eliminar_pedido]
 @p_codPedido as int
@@ -89,12 +82,6 @@ SET CodProveedor=@p_CodProveedor,
 	CodProducto = @p_CodProducto,
 	Unidades = @p_Cantidad
 WHERE CodPedido = @p_CodPedido
-
-CREATE PROCEDURE [WEB].[mostrar_lineas_pedidos_Codigo]
-AS
-SELECT CodPedido
-FROM SGE_LineasDePedidos_Tienda
-GROUP BY CodPedido
 
 CREATE PROCEDURE [WEB].[mostrar_pedidos_Codigo]
 @p_CodPedido as int

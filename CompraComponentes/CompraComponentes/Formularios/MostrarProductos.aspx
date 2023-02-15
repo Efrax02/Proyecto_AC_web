@@ -22,7 +22,6 @@
                     <asp:BoundField DataField="StokcMin" HeaderText="StokcMin" SortExpression="StokcMin"></asp:BoundField>
                 </Columns>
             </asp:GridView>
-            <%--<asp:SqlDataSource runat="server" ID="SqlDataSource" ConnectionString='<%$ ConnectionStrings:DAM2-EfrainHernandezEFRAX %>' SelectCommand="SELECT [CodProducto], [CodProveedor], [NombreProd], [PrecioCoste], [Existencias], [StokcMax], [StokcMin] FROM [SGE_Productos_Proveedores]"></asp:SqlDataSource>--%>
         </div>
     </form>
 </body>

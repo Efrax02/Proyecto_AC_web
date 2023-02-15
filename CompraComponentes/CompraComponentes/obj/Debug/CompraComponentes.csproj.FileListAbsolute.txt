@@ -175,12 +175,10 @@ D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraCompo
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\obj\Debug\CompraComponentes.csproj.CopyComplete
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\obj\Debug\CompraComponentes.dll
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\obj\Debug\CompraComponentes.pdb
-D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\Hashids.net.dll
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\System.Buffers.dll
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\System.Memory.dll
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\System.Numerics.Vectors.dll
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\System.Runtime.CompilerServices.Unsafe.dll
-D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\Hashids.net.xml
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\System.Buffers.xml
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\System.Memory.xml
 D:\Efrain_Hernandez\Acceso a Datos\Proyecto_AC_web\CompraComponentes\CompraComponentes\bin\System.Numerics.Vectors.xml

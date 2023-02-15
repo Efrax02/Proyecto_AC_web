@@ -6,32 +6,67 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "../Controladores/ControladorTodosProveedores.ashx",
+                success: function (proveedoresJSON) {
+                    proveedores = jQuery.parseJSON(proveedoresJSON);
+                    proveedores.forEach(proveedor => {
+                        $('#cboProveedores').append('<option value= ' + proveedor.CodProveedor + '>' + proveedor.NombreProveedor + '</option>');
+                    });
+                },
+                errores: function () { }
+            });
+
+            $.ajax({
+                url: "../Controladores/ControladorTodosProductos.ashx",
+                success: function (productosJSON) {
+                    productos = jQuery.parseJSON(productosJSON);
+                    productos.forEach(producto => {
+                        $('#cboProductos').append('<option value= ' + producto.CodProducto + '>' + producto.NombreProd + '</option>');
+                    });
+                },
+                errores: function () { }
+            });
+
+            $("#btnalta").click(function () {
+                codPedido = $('#txtNCodPedido').val();
+                codProveedor = $('#cboProveedores').val();
+                codProducto = $('#cboProductos').val();
+                unidades = $('#txtNUnidades').val();
+                $.ajax({
+                    url: '../Controladores/ControladorAñadirPedido.ashx',
+                    type: 'get',
+                    async: true,
+                    data: { CodPedido: codPedido, CodProveedor: codProveedor, CodProducto: codProducto, Unidades: unidades },
+                    success: function (res) {
+                        if (res == 0) {
+                            $('#divRes').text('Linea de pedido añadida');
+                        }
+                        else if (res == 1) {
+                            $('#divRes').text('Pedido añadido');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:ObjectDataSource ID="or_insertar_pedido" runat="server" InsertMethod="InsertarPedido" SelectMethod="MostrarPedidosInsertar" TypeName="CompraComponentes.App_Code.DB_Pedidos">
-                <InsertParameters>
-                    <asp:Parameter Name="CodPedido" Type="Int32"></asp:Parameter>
-                    <asp:Parameter Name="CodProveedor" Type="Int32"></asp:Parameter>
-                    <asp:Parameter Name="CodProducto" Type="Int32"></asp:Parameter>
-                    <asp:Parameter Name="Unidades" Type="Int32"></asp:Parameter>
-                </InsertParameters>
-            </asp:ObjectDataSource>
-
-            <asp:DetailsView ID="dtsDatosInsertar" runat="server" 
-                Height="50px" Width="125px" 
-                AutoGenerateRows="False" 
-                DataSourceID="or_insertar_pedido" 
-                DefaultMode="Insert"
-                AutoGenerateInsertButton="true">
-                <Fields>
-                    <asp:BoundField DataField="CodPedido" HeaderText="CodPedido" SortExpression="CodPedido"></asp:BoundField>
-                    <asp:BoundField DataField="CodProveedor" HeaderText="CodProveedor" SortExpression="CodProveedor"></asp:BoundField>
-                    <asp:BoundField DataField="CodProducto" HeaderText="CodProducto" SortExpression="CodProducto"></asp:BoundField>
-                    <asp:BoundField DataField="Unidades" HeaderText="Unidades" SortExpression="Unidades"></asp:BoundField>
-                </Fields>
-            </asp:DetailsView><br />
+            <div id="divRes"></div>
+            CodPedido: <input id="txtNCodPedido" type="text" /><br />
+            CodProveedor: <select name="cboProveedores" id="cboProveedores">
+					        <option value="-1" selected="selected">-- PROVEEDORES --</option>
+                       </select><br />
+            CodProducto: <select name="cboProductos" id="cboProductos">
+					        <option value="-1" selected="selected">-- PRODUCTOS --</option>
+                       </select><br />
+            Unidades: <input id="txtNUnidades" type="text" /><br />
+            <asp:Button ID="btnalta" runat="server" Text="Añadir Pedido" /><br />
 
             <asp:LinkButton ID="btnlVerProveedores" runat="server" OnClick="btnlVerProveedores_Click">Ver Proveedores</asp:LinkButton>
             <asp:LinkButton ID="btnlVerProductos" runat="server" OnClick="btnlVerProductos_Click">Ver Productos</asp:LinkButton><br />
@@ -39,7 +74,6 @@
             <br /><asp:Label ID="Label1" runat="server" Text="Inserte código de pedido para buscar"></asp:Label>
             <br /><asp:TextBox ID="txtCodPedido" runat="server"></asp:TextBox>
             <asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
-            <%--<asp:Button ID="btnMostrarTodos" runat="server" Text="Ver Pedidos Todos" OnClick="btnMostrarTodos_Click" />--%><br />
 
             <asp:ObjectDataSource ID="or_Pedidos" runat="server" SelectMethod="MostrarPedidos" TypeName="CompraComponentes.App_Code.DB_Pedidos" DeleteMethod="EliminarPedido">
                 <DeleteParameters>
@@ -100,8 +134,6 @@
                     <asp:BoundField DataField="Unidades" HeaderText="Unidades" SortExpression="Unidades"></asp:BoundField>
                 </Columns>
             </asp:GridView>
-
-            
         </div>
     </form>
 </body>

@@ -89,6 +89,9 @@
     <Content Include="Formularios\NuevoUsuario.aspx" />
     <Content Include="Imagenes\Usuario.png" />
     <Content Include="SQL\ProcedimientosAlamacenados.sql" />
+    <Content Include="Controladores\ControladorAñadirPedido.ashx" />
+    <Content Include="Controladores\ControladorTodosProveedores.ashx" />
+    <Content Include="Controladores\ControladorTodosProductos.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,6 +109,17 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Productos_Proveedores.cs" />
+    <Compile Include="Clases\Proveedores.cs" />
+    <Compile Include="Controladores\ControladorAñadirPedido.ashx.cs">
+      <DependentUpon>ControladorAñadirPedido.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Controladores\ControladorTodosProductos.ashx.cs">
+      <DependentUpon>ControladorTodosProductos.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Controladores\ControladorTodosProveedores.ashx.cs">
+      <DependentUpon>ControladorTodosProveedores.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\NuevoUsuario.aspx.cs">
       <DependentUpon>NuevoUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,6 +218,7 @@
       <CachedSettingsPropName>CompraComponentes_ServicioLoggin_ServicioLoggin</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
