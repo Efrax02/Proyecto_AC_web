@@ -26,7 +26,7 @@ namespace CompraComponentes.Formularios
             }
             else
             {
-                lblRes.Text = "Usurio o contraseña incorrectos";
+                lblRes.Text = "Usuario o contraseña incorrectos";
             }
         }
 

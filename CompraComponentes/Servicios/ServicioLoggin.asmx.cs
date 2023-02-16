@@ -43,7 +43,7 @@ namespace Servicios
                 sesion = new Loggin((string)lector.GetString(0));
                 byte[] encriptado = Convert.FromBase64String(sesion.Contraseña);
                 string pass = Encoding.Unicode.GetString(encriptado);
-                if (contraseña.CompareTo("pass") == 0)
+                if (contraseña.CompareTo(pass) == 0)
                 {
                     return true;
                 }
